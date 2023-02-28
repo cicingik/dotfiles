@@ -1,6 +1,20 @@
 vim.cmd [[packadd packer.nvim]]
 
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua PackerSync
+  augroup end
+]])
+
 return require('packer').startup(function(use)
+  use({
+    "folke/noice.nvim",
+    requires = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    }
+  })
   use 'wbthomason/packer.nvim'
   use {
     "williamboman/mason.nvim",
@@ -47,7 +61,6 @@ return require('packer').startup(function(use)
   use 'windwp/nvim-ts-autotag'
   use 'p00f/nvim-ts-rainbow'
   use 'axelvc/template-string.nvim'
-  use 'j-hui/fidget.nvim'
   use 'xiyaowong/nvim-transparent'
   use 'folke/todo-comments.nvim'
   use 'numToStr/Comment.nvim'
@@ -58,7 +71,11 @@ return require('packer').startup(function(use)
   use 'tpope/vim-obsession'
   use 'dhruvasagar/vim-prosession'
   use('f-person/git-blame.nvim')
-  use('github/copilot.vim')
+  --use('github/copilot.vim')
+  use({
+    "glepnir/lspsaga.nvim",
+    branch = "main",
+  })
   use("airblade/vim-gitgutter")
   use("fatih/vim-go")
   use("mfussenegger/nvim-dap")

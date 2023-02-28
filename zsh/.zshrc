@@ -8,7 +8,8 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+#ZSH_THEME="robbyrussell"
+ZSH_THEME="pygmalion-virtualenv"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -105,19 +106,19 @@ source $ZSH/oh-my-zsh.sh
 #alias python=/usr/local/bin/python3
 #alias pip=/usr/local/bin/pip3
 
-[[ -s "/Users/koinworks/.gvm/scripts/gvm" ]] && source "/Users/koinworks/.gvm/scripts/gvm"
+[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/koinworks/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/koinworks/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '$HOME/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/koinworks/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/koinworks/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '$HOME/google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/google-cloud-sdk/completion.zsh.inc'; fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
-[ -f /Users/koinworks/fubectl.source ] && source /Users/koinworks/fubectl.source
+[ -f $HOME/fubectl.source ] && source $HOME/fubectl.source
 
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 

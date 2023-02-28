@@ -1,4 +1,3 @@
-require 'fidget'.setup()
 require 'todo-comments'.setup()
 
 require("transparent").setup({
@@ -7,4 +6,14 @@ require("transparent").setup({
     "Comment"
   },
   exclude = {}, -- table: groups you don't want to clear
+})
+
+require 'noice'.setup({
+  messages = {
+    enable = false
+  }
+})
+require 'notify'.setup({
+  background_colour = "#000000",
+  render = 'minimal'
 })
