@@ -12,14 +12,35 @@ personal configuration
   ```
 
 ## installation
+
+### clone repository
 ```bash
--- clone the repository
 git clone https://github.com/cicingik/dotfiles.git
 cd dotfiles
 
 -- backup all config to "$HOME/dotfiles-backup"
-./install backup
+./install.sh backup
 
 -- install dotfiles
-./install symlink
+./install.sh symlink
+
+-- reload .zshrc 
+source ~/.zshrc
 ```
+
+### installing tmux plugins
+just open `tmux` for auto install all needed plugins
+```bash
+tmux
+```
+
+### installing plugin neovim
+```bash
+-- open some file
+v README.md
+```
+run `PackerInstall`
+
+<div align="center">
+  <img width="80%" src="./docs/PackerInstall.png">
+</div>
