@@ -8,7 +8,6 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-#ZSH_THEME="robbyrussell"
 ZSH_THEME="pygmalion-virtualenv"
 
 # Set list of themes to pick from when loading at random
@@ -71,7 +70,7 @@ ZSH_THEME="pygmalion-virtualenv"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git virtualenv python golang dotenv kubectl thefuck)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -102,10 +101,6 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
-######## CUSTOM
-#alias python=/usr/local/bin/python3
-#alias pip=/usr/local/bin/pip3
-
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 
 # The next line updates PATH for the Google Cloud SDK.
@@ -122,10 +117,10 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
-alias k=kubectl
-complete -F __start_kubectl k
+# alias k=kubectl
+# complete -F __start_kubectl k
 
-source <(kubectl completion zsh)
+# source <(kubectl completion zsh)
 
 eval "$(direnv hook zsh)"
 
