@@ -35,12 +35,19 @@ tmux
 ```
 
 ### installing plugin neovim
-```bash
--- open some file
-v README.md
-```
-run `PackerInstall`
+- Install neovim Plugin Manager
+  ```bash
+  git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+  ```
 
-<div align="center">
-  <img width="80%" src="./docs/PackerInstall.png">
-</div>
+- Install all plugins
+  ```bash
+  -- open some file
+  nvim README.md
+  ```
+  run `PackerInstall`
+
+  <div align="center">
+    <img width="80%" src="./docs/PackerInstall.png">
+  </div>
