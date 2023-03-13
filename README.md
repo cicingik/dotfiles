@@ -17,14 +17,9 @@ personal configuration
 git clone https://github.com/cicingik/dotfiles.git
 cd dotfiles
 
--- backup existing .zshrc if exist
-mv .zshrc .zshrc.bak
+-- backup all config to "$HOME/dotfiles-backup"
+./install backup
 
---backup tmux conf if exist
-
-ln -s -f dotfiles/zsh/.zshrc
-ln -s -f dotfiles/tmux/.tmux.conf
-ln -s -f dotfiles/tmux/.tmux.conf.local
-
-cp -rf dotfiles/nvim .config/nvim
+-- install dotfiles
+./install symlink
 ```

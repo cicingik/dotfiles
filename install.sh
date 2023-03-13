@@ -46,28 +46,56 @@ backup() {
         filename=".$(basename "$file" '.symlink')"
         target="$HOME/$filename"
         if [ -f "$target" ]; then
-            echo "backing up $filename"
-            cp "$target" "$BACKUP_DIR"
+            info "backing up $filename"
+            mv "$target" "$BACKUP_DIR"
         else
             warning "$filename does not exist at this location or is a symlink"
         fi
     done
 
-    for filename in "$HOME/.config/nvim" "$HOME/.vim" "$HOME/.vimrc"; do
+    for filename in "$HOME/.vim" "$HOME/.vimrc"; do
         if [ ! -L "$filename" ]; then
             if [ -d "$filename" ]; then
                 info "backing up $filename"
-                cp -rf "$filename" "$BACKUP_DIR"
+                mv -f "$filename" "$BACKUP_DIR"
             elif [[ -f "$filename" ]]; then
-                echo "backing up $filename"
-                cp -rf "$filename" "$BACKUP_DIR"
+                info "backing up $filename"
+                mv "$filename" "$BACKUP_DIR"
             else
                 warning "$filename does not exist at this location or is a symlink"
+                warning "removing $filename"
+                rm -rf "$filename"
             fi
         else
             warning "$filename does not exist at this location or is a symlink"
+            warning "removing $filename"
+            rm -rf "$filename"
         fi
     done
+
+    config_files=$(find "$DOTFILES/config" -maxdepth 1 -mindepth 1 2>/dev/null)
+    for config in $config_files; do
+        target="$HOME/.config/$(basename "$config")" 
+        if [ ! -L "$target" ]; then
+            if [ -d "$target" ]; then
+                info "backing up $target"
+                mv -f "$target" "$BACKUP_DIR"
+            elif [[ -f "$target" ]]; then
+                info "backing up $target"
+                mv "$target" "$BACKUP_DIR"
+            else
+                warning "$target does not exist at this location or is a symlink"
+                warning "removing $target"
+                rm -rf "$target"
+            fi
+        else
+            warning "$target does not exist at this location or is a symlink"
+            warning "removing $target"
+            rm -rf "$target"
+        fi
+
+    done
+
 }
 
 setup_symlinks() {
@@ -79,7 +107,7 @@ setup_symlinks() {
             info "~${target#$HOME} already exists... Skipping."
         else
             info "Creating symlink for $file"
-            echo -e "$file" "$target"
+            ln -f -s  "$file" "$target"
         fi
     done
 
@@ -90,41 +118,31 @@ setup_symlinks() {
         mkdir -p "$HOME/.config"
     fi
 
-    config_files=$(find "$DOTFILES/config" -maxdepth 1 2>/dev/null)
+    config_files=$(find "$DOTFILES/config" -maxdepth 1 -mindepth 1 2>/dev/null)
     for config in $config_files; do
         target="$HOME/.config/$(basename "$config")"
         if [ -e "$target" ]; then
             info "~${target#$HOME} already exists... Skipping."
         else
             info "Creating symlink for $config"
-            echo -e "$config" "$target"
+            ln -f -s "$config" "$target"
         fi
     done
 }
 
-test() {
-  title "Test script"
-
-  get_linkables
-
-  success "Test"
-  info "Info"
-  warning "Warning"
-  error "Error"
-}
-
 case "$1" in
-  test)
-    test
-    ;;
   backup)
     backup
     ;;
   symlink)
     setup_symlinks
     ;;
+  help)
+    echo -e $"\nUsage: $(basename "$0") {backup|symlink}\n"
+    exit 1
+    ;;
   *)
-    echo -e $"\nUsage: $(basename "$0") {test}\n"
+    echo -e $"\nUsage: $(basename "$0") {backup|symlink}\n"
     exit 1
     ;;
 esac
