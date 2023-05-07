@@ -134,3 +134,9 @@ fi
 
 alias v=nvim
 alias c=clear
+
+alias gops="/Users/koinworks/.gvm/pkgsets/go1.18/global/bin/gops"
+
+export PATH="/usr/local/opt/postgresql@15/bin:$PATH"
+
+eval "$(pyenv virtualenv-init -)"

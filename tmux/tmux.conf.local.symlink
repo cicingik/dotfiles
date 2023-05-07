@@ -72,6 +72,7 @@ tmux_conf_theme_colour_14="#080808"   # dark gray
 tmux_conf_theme_colour_15="#080808"   # dark gray
 tmux_conf_theme_colour_16="#d70000"   # red
 tmux_conf_theme_colour_17="#e4e4e4"   # white
+tmux_conf_theme_colour_18="#a7c080"   # light green
 
 # default theme (ansi)
 #tmux_conf_theme_colour_1="colour0"
@@ -177,7 +178,7 @@ tmux_conf_theme_window_status_format="#I #W"
 #     - #{username}
 #     - #{username_ssh}
 tmux_conf_theme_window_status_current_fg="$tmux_conf_theme_colour_1"
-tmux_conf_theme_window_status_current_bg="$tmux_conf_theme_colour_4"
+tmux_conf_theme_window_status_current_bg="$tmux_conf_theme_colour_18"
 tmux_conf_theme_window_status_current_attr="bold"
 tmux_conf_theme_window_status_current_format="#I #W"
 #tmux_conf_theme_window_status_current_format="#{circled_window_index} #W"
@@ -239,12 +240,12 @@ tmux_conf_theme_status_left='❐ #S | ↑#{?uptime_y, #{uptime_y}y,}#{?uptime_d,
 tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} | %R , %d %b | #(/bin/bash $HOME/.kube.tmux 250 black black) '
 # status left style
 tmux_conf_theme_status_left_fg="$tmux_conf_theme_colour_1,$tmux_conf_theme_colour_1,$tmux_conf_theme_colour_1,$tmux_conf_theme_colour_12"
-tmux_conf_theme_status_left_bg="$tmux_conf_theme_colour_3,$tmux_conf_theme_colour_4,$tmux_conf_theme_colour_3,$tmux_conf_theme_colour_1"
+tmux_conf_theme_status_left_bg="$tmux_conf_theme_colour_3,$tmux_conf_theme_colour_18,$tmux_conf_theme_colour_3,$tmux_conf_theme_colour_1"
 tmux_conf_theme_status_left_attr="bold,none,none,none,none"
 
 # status right style
 tmux_conf_theme_status_right_fg="$tmux_conf_theme_colour_1,$tmux_conf_theme_colour_1,$tmux_conf_theme_colour_1,$tmux_conf_theme_colour_1,$tmux_conf_theme_colour_1"
-tmux_conf_theme_status_right_bg="$tmux_conf_theme_colour_3,$tmux_conf_theme_colour_3,$tmux_conf_theme_colour_4,$tmux_conf_theme_colour_3,$tmux_conf_theme_colour_4"
+tmux_conf_theme_status_right_bg="$tmux_conf_theme_colour_3,$tmux_conf_theme_colour_3,$tmux_conf_theme_colour_18,$tmux_conf_theme_colour_3,$tmux_conf_theme_colour_18"
 tmux_conf_theme_status_right_attr="none,none,none,none,none"
 
 # pairing indicator

@@ -37,7 +37,7 @@ return require('packer').startup(function(use)
   use 'tpope/vim-surround'
   use {
     'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    requires = { 'nvim-tree/nvim-web-devicons' }
   }
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.0',
@@ -73,8 +73,11 @@ return require('packer').startup(function(use)
   use('f-person/git-blame.nvim')
   --use('github/copilot.vim')
   use({
-    "glepnir/lspsaga.nvim",
+    "nvimdev/lspsaga.nvim",
     branch = "main",
+    requires = {
+      { "nvim-tree/nvim-web-devicons" },
+    }
   })
   use("airblade/vim-gitgutter")
   use("fatih/vim-go")

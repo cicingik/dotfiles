@@ -7,3 +7,5 @@ require("mason-lspconfig").setup({
   },
   automatic_installation = true,
 })
+
+require 'lspconfig'.pyright.setup {}

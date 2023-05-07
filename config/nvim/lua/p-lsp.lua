@@ -40,6 +40,8 @@ require('mason-lspconfig').setup_handlers({
   end
 })
 
+vim.g.python3_host_prog = '/Users/koinworks/.pyenv/shims/python'
+
 vim.keymap.set('n', '<leader>o', '<cmd>TypescriptOrganizeImports<cr>')
 vim.keymap.set('n', '<leader>a', '<cmd>TypescriptAddMissingImports<cr>')
 vim.keymap.set('n', '<leader>r', '<cmd>TypescriptRemoveUnused<cr>')
