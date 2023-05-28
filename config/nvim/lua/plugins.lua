@@ -37,7 +37,7 @@ return require('packer').startup(function(use)
   use 'tpope/vim-surround'
   use {
     'nvim-lualine/lualine.nvim',
-    requires = { 'nvim-tree/nvim-web-devicons' }
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true }
   }
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.0',
@@ -82,4 +82,11 @@ return require('packer').startup(function(use)
   use("airblade/vim-gitgutter")
   use("fatih/vim-go")
   use("mfussenegger/nvim-dap")
+  use 'simrat39/rust-tools.nvim'
+  use "folke/neodev.nvim"
+  use 'mfussenegger/nvim-dap'
+  use "rcarriga/nvim-dap-ui"
+  use 'theHamsta/nvim-dap-virtual-text'
+  use 'nvim-telescope/telescope-dap.nvim'
+  use 'leoluz/nvim-dap-go'
 end)

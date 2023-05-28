@@ -1,6 +1,18 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+local status_ok, nvim_tree = pcall(require, "nvim-tree")
+if not status_ok then
+  return
+end
+
+local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
+if not config_status_ok then
+  return
+end
+
+local tree_cb = nvim_tree_config.nvim_tree_callback
+
 require("nvim-tree").setup({
   sort_by = "case_sensitive",
   actions = {
@@ -32,7 +44,15 @@ require("nvim-tree").setup({
       warning = '',
       error = ''
     }
-  }
+  },
+  view = {
+    width = 30,
+    side = "left",
+    mappings = {
+      list = {
+        { key = "<leader>v", cb = tree_cb "vsplit" },
+        { key = "<leader>h", cb = tree_cb "split" },
+      },
+    },
+  },
 })
-
-vim.keymap.set('n', '<c-e>', '<cmd>NvimTreeToggle<cr>')

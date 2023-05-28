@@ -12,3 +12,14 @@ keymap.set('n', 'f', '<C-w>w')
 
 keymap.set('n', 'H', '^')
 keymap.set('n', 'L', '$')
+
+-- nvim-tree
+keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<cr>')
+keymap.set('n', '<leader>l', '<cmd>:tabNext<cr>')
+keymap.set('n', '<leader>.', '<cmd>:tabclose<cr>')
+
+
+-- lsp
+-- keymap.set('n', '<leader>o', '<cmd>TypescriptOrganizeImports<cr>')
+-- keymap.set('n', '<leader>a', '<cmd>TypescriptAddMissingImports<cr>')
+-- keymap.set('n', '<leader>r', '<cmd>TypescriptRemoveUnused<cr>')
