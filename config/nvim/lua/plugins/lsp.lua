@@ -14,10 +14,7 @@ return {
       require("mason-tool-installer").setup {
         auto_update = true,
         debounce_hours = 24,
-        ensure_installed = {
-          "black",
-          "isort",
-        },
+        ensure_installed = {},
       }
     end,
   },

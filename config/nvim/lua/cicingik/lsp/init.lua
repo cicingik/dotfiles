@@ -23,12 +23,12 @@ local nmap = require("keymap").nmap
 local autocmd = require("auto").autocmd
 local autocmd_clear = vim.api.nvim_clear_autocmds
 
-local is_mac = vim.fn.has "macunix" == 1
+-- local is_mac = vim.fn.has "macunix" == 1
 
 local telescope_mapper = require "cicingik.telescope.mappings"
 local handlers = require "cicingik.lsp.handlers"
 
-local ts_util = require "nvim-lsp-ts-utils"
+-- local ts_util = require "nvim-lsp-ts-utils"
 local inlays = require "cicingik.lsp.inlay"
 
 local custom_init = function(client)
@@ -39,7 +39,7 @@ end
 local augroup_highlight = vim.api.nvim_create_augroup("custom-lsp-references", { clear = true })
 local augroup_codelens = vim.api.nvim_create_augroup("custom-lsp-codelens", { clear = true })
 local augroup_format = vim.api.nvim_create_augroup("custom-lsp-format", { clear = true })
-local augroup_semantic = vim.api.nvim_create_augroup("custom-lsp-semantic", { clear = true })
+-- local augroup_semantic = vim.api.nvim_create_augroup("custom-lsp-semantic", { clear = true })
 
 local autocmd_format = function(async, filter)
   vim.api.nvim_clear_autocmds { buffer = 0, group = augroup_format }
@@ -52,45 +52,9 @@ local autocmd_format = function(async, filter)
 end
 
 local filetype_attach = setmetatable({
-  -- clojure_lsp = function()
-  --   autocmd_format(false)
-  -- end,
-  --
-  -- ocaml = function()
-  --   autocmd_format(false)
-  --
-  -- -- Display type information
-  --   autocmd_clear { group = augroup_codelens, buffer = 0 }
-  --   autocmd {
-  --     { "BufEnter", "BufWritePost", "CursorHold" },
-  --     augroup_codelens,
-  --     require("cicingik.lsp.codelens").refresh_virtlines,
-  --     0,
-  --   }
-  --
-  --   vim.keymap.set(
-  --     "n",
-  --     "<space>tt",
-  --     require("cicingik.lsp.codelens").toggle_virtlines,
-  --     { silent = true, desc = "[T]oggle [T]ypes", buffer = 0 }
-  --   )
-  -- end,
-
-  -- ruby = function()
-  --   autocmd_format(false)
-  -- end,
-
   go = function()
     autocmd_format(false)
   end,
-
-  -- scss = function()
-  --   autocmd_format(false)
-  -- end,
-
-  -- css = function()
-  --   autocmd_format(false)
-  -- end,
 
   rust = function()
     telescope_mapper("<space>wf", "lsp_workspace_symbols", {
@@ -100,10 +64,6 @@ local filetype_attach = setmetatable({
 
     autocmd_format(false)
   end,
-
-  -- racket = function()
-  --   autocmd_format(false)
-  -- end,
 
   typescript = function()
     autocmd_format(false, function(client)
@@ -229,7 +189,7 @@ if has_rt then
     },
     tools = {
       inlay_hints = {
-        auto = false,
+        auto = true,
       },
     },
   }
@@ -247,25 +207,11 @@ else
 end
 
 local servers = {
-  -- Also uses `shellcheck` and `explainshell`
   bashls = true,
   lua_ls = true,
-
-  -- eslint = true,
-  -- gdscript = true,
-  -- graphql = true,
-  -- html = true,
   pyright = true,
   vimls = true,
   yamlls = true,
-  -- ocamllsp = {
-  --   get_language_id = function(_, ftype)
-  --     return ftype
-  --   end,
-  -- },
-
-  -- clojure_lsp = true,
-
   -- Enable jsonls with json schemas
   jsonls = {
     settings = {
@@ -275,28 +221,6 @@ local servers = {
       },
     },
   },
-
-  -- TODO: Test the other Ruby LSPs?
-  -- solargraph = { cmd = { "bundle", "exec", "solargraph", "stdio" } },
-  -- sorbet = true,
-
-  -- cmake = (1 == vim.fn.executable "cmake-language-server"),
-  -- dartls = pcall(require, "flutter-tools"),
-
-  -- clangd = {
-  --   cmd = {
-  --     "clangd",
-  --     "--background-index",
-  --     "--suggest-missing-includes",
-  --     "--clang-tidy",
-  --     "--header-insertion=iwyu",
-  --   },
-  --   init_options = {
-  --     clangdFileStatus = true,
-  --   },
-  -- },
-
-  -- svelte = true,
 
   gopls = {
     settings = {
@@ -311,6 +235,7 @@ local servers = {
           parameterNames = true,
           rangeVariableTypes = true,
         } or nil,
+        staticcheck = true,
       },
     },
 
@@ -319,37 +244,8 @@ local servers = {
     },
   },
 
-  -- omnisharp = {
-  --   cmd = { vim.fn.expand "~/build/omnisharp/run", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
-  -- },
-
   rust_analyzer = rust_analyzer,
 
-  -- racket_langserver = true,
-
-  -- elmls = true,
-  -- cssls = true,
-  -- perlnavigator = true,
-
-  -- tsserver = {
-  --   init_options = ts_util.init_options,
-  --   cmd = { "typescript-language-server", "--stdio" },
-  --   filetypes = {
-  --     "javascript",
-  --     "javascriptreact",
-  --     "javascript.jsx",
-  --     "typescript",
-  --     "typescriptreact",
-  --     "typescript.tsx",
-  --   },
-  --
-  --   on_attach = function(client)
-  --     custom_attach(client)
-  -- 
-  --     ts_util.setup { auto_inlay_hints = false }
-  --     ts_util.setup_client(client)
-  --   end,
-  -- },
 }
 
 if vim.fn.executable "llmsp" == 1 and vim.env.SRC_ACCESS_TOKEN then

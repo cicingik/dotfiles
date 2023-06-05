@@ -45,7 +45,7 @@ M.implementation = function()
       end
     end
 
-    vim.lsp.handlers["textDocument/implementation"](err, result, ctx, config)
+    -- vim.lsp.handlers["textDocument/implementation"](err, result, ctx, config)
     vim.cmd [[normal! zz]]
   end)
 end
