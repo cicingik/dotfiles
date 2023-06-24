@@ -10,7 +10,7 @@ if neodev then
   }
 end
 
-vim.g.python3_host_prog = '/Users/koinworks/develop/apgw/bin/python'
+vim.g.python3_host_prog = '/Users/koinworks/.pyenv/shims/python'
 
 
 local lspconfig = vim.F.npcall(require, "lspconfig")
@@ -289,7 +289,7 @@ end
 
 require("mason").setup()
 require("mason-lspconfig").setup {
-  ensure_installed = { "lua_ls", "jsonls", "rust_analyzer"},
+  ensure_installed = { "lua_ls", "jsonls", "rust_analyzer", "gopls"},
   automatic_installation = true,
 }
 

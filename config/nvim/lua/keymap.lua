@@ -16,6 +16,15 @@ keymap.set("n", "<leader>o", "<cmd>Lspsaga outline<CR>")
 keymap.set("n", "gh", "<cmd>Lspsaga lsp_finder<CR>")
 keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>")
 
+-- make test for golang
+keymap.set("n", "<leader>gt", "<cmd>GoTests<CR>")
+
+-- presentation
+keymap.set("n", "<leader>pp", "<cmd>PresentingStart<CR>")
+keymap.set("n", "n", "<cmd>PresentingNext<CR>")
+keymap.set("n", "b", "<cmd>PresentingPrev<CR>")
+
+
 M.imap = function(tbl)
   vim.keymap.set("i", tbl[1], tbl[2], tbl[3])
 end
