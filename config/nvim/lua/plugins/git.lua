@@ -7,4 +7,5 @@ return {
   "sindrets/diffview.nvim", -- Sweet diff helper
 
   "Rawnly/gist.nvim", -- Gist helper
+  "f-person/git-blame.nvim" -- Git blamme
 }

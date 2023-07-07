@@ -27,5 +27,6 @@ return {
   "scalameta/nvim-metals",
   "b0o/schemastore.nvim",
   "nvimdev/lspsaga.nvim",
+  "fatih/vim-go",
   -- { "pjlast/llmsp", build = "go install" },
 }
