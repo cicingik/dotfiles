@@ -4,6 +4,16 @@ return {
      config = function()
        require "cicingik.lsp"
      end,
+     dependencies = {
+        {
+            "SmiteshP/nvim-navbuddy",
+            dependencies = {
+                "SmiteshP/nvim-navic",
+                "MunifTanjim/nui.nvim"
+            },
+            opts = { lsp = { auto_attach = true } }
+        }
+    },
   },
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
@@ -28,5 +38,4 @@ return {
   "b0o/schemastore.nvim",
   "nvimdev/lspsaga.nvim",
   "fatih/vim-go",
-  -- { "pjlast/llmsp", build = "go install" },
 }

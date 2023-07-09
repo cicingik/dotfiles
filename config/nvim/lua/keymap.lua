@@ -24,6 +24,12 @@ keymap.set("n", "<leader>pp", "<cmd>PresentingStart<CR>")
 keymap.set("n", "n", "<cmd>PresentingNext<CR>")
 keymap.set("n", "b", "<cmd>PresentingPrev<CR>")
 
+-- Hop
+keymap.set("n", "<leader>H", "<cmd>HopAnywhere<CR>", { silent = true })
+keymap.set("n", "<leader>h", "<cmd>HopWord<CR>", { silent = true })
+
+-- NavBuddy
+keymap.set("n", "<leader>N", "<cmd>Navbuddy<CR>", { silent = true })
 
 M.imap = function(tbl)
   vim.keymap.set("i", tbl[1], tbl[2], tbl[3])

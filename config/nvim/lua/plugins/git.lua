@@ -7,5 +7,12 @@ return {
   "sindrets/diffview.nvim", -- Sweet diff helper
 
   "Rawnly/gist.nvim", -- Gist helper
-  "f-person/git-blame.nvim" -- Git blamme
+  "f-person/git-blame.nvim", -- Git blamme
+  {
+      "kdheepak/lazygit.nvim",
+      -- optional for floating window border decoration
+      dependencies = {
+          "nvim-lua/plenary.nvim",
+      },
+  },
 }

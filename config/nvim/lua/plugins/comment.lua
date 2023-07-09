@@ -57,4 +57,5 @@ return {
       comment_ft.set("lua", { "--%s", "--[[%s]]" })
     end,
   },
+  "folke/todo-comments.nvim",
 }

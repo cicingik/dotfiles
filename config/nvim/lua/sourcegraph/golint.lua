@@ -5,7 +5,7 @@ local Path = require "plenary.path"
 local M = {}
 
 local find_root = lspconfig_util.root_pattern ".git"
-local golang_lint_bin = "/usr/locl/bin/golangci-lint"
+local golang_lint_bin = "/usr/local/bin/golangci-lint"
 
 M.run = function()
   local root = find_root(vim.fn.expand "%:p")

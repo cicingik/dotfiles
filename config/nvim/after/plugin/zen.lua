@@ -35,8 +35,6 @@ require("transparent").setup({
   exclude_groups = {}, -- table: groups you don't want to clear
 })
 
--- require 'notify'.setup({
---   background_colour = "#a7c080",
---   render = 'minimal'
--- })
---
+require("notify").setup({
+  background_colour = "#df8882",
+})
