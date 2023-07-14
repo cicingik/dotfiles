@@ -36,6 +36,9 @@ return {
   "jose-elias-alvarez/nvim-lsp-ts-utils",
   "scalameta/nvim-metals",
   "b0o/schemastore.nvim",
-  "nvimdev/lspsaga.nvim",
-  "fatih/vim-go",
+  {
+    "nvimdev/lspsaga.nvim",
+    dev = true,
+  },
+  -- "fatih/vim-go",
 }

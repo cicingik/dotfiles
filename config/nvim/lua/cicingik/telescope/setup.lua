@@ -202,7 +202,7 @@ require("telescope").setup {
 -- require("telescope").load_extension "flutter"
 
 _ = require("telescope").load_extension "dap"
-_ = require("telescope").load_extension "notify"
+-- _ = require("telescope").load_extension "notify"
 _ = require("telescope").load_extension "file_browser"
 _ = require("telescope").load_extension "ui-select"
 _ = require("telescope").load_extension "fzf"
