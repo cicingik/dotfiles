@@ -1,5 +1,3 @@
---     use "lukas-reineke/cmp-under-comparator"
-
 return {
   { "hrsh7th/nvim-cmp" },
   { "hrsh7th/cmp-buffer" },
@@ -9,17 +7,6 @@ return {
   { "onsails/lspkind-nvim" },
   { "saadparwaiz1/cmp_luasnip", dependencies = { "L3MON4D3/LuaSnip" } },
   { "tamago324/cmp-zsh" },
-
---   {
---     "zbirenbaum/copilot.lua",
---     config = function()
---       require("copilot").setup()
---     end,
---   },
---   {
---     "zbirenbaum/copilot-cmp",
---     config = function()
---       require("copilot_cmp").setup()
---     end,
---   },
+  -- AI based
+  { "codota/tabnine-nvim", build = "/Users/koinworks/.local/share/nvim/lazy/tabnine-nvim/dl_binaries.sh" },
 }

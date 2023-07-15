@@ -37,7 +37,7 @@ require("nvim-dap-virtual-text").setup {
 
   -- experimental features:
   virt_text_pos = "eol", -- position of virtual text, see `:h nvim_buf_set_extmark()`
-  all_frames = false, -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
+  all_frames = false,    -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
 }
 
 -- TODO: How does terminal work?
@@ -359,7 +359,8 @@ dap.configurations.rust = {
     name = "Launch syntect_server",
     type = "lldb",
     request = "launch",
-    program = "/home/tjdevries/sourcegraph/sourcegraph.git/scip-syntax-documents/docker-images/syntax-highlighter/target/debug/syntect_server",
+    program =
+    "/home/tjdevries/sourcegraph/sourcegraph.git/scip-syntax-documents/docker-images/syntax-highlighter/target/debug/syntect_server",
     args = {},
     cwd = "/home/tjdevries/sourcegraph/sourcegraph.git/scip-syntax-documents/docker-images/syntax-highlighter/",
     stopOnEntry = false,
@@ -404,10 +405,10 @@ map("<leader>de", require("dapui").eval)
 map("<leader>dE", function()
   require("dapui").eval(vim.fn.input "[DAP] Expression > ")
 end)
-map("<leader>cc", function ()
+map("<leader>cc", function()
   require("dapui").open()
 end)
-map("<leader>cx", function ()
+map("<leader>cx", function()
   require("dapui").close()
 end)
 

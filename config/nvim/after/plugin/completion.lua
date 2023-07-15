@@ -252,15 +252,14 @@ _ = vim.cmd [[
 autocmd FileType TelescopePrompt lua require('cmp').setup.buffer { enabled = false }
 --]]
 
--- Youtube: customizing appearance
---
--- nvim-cmp highlight groups.
-local Group = require("colorbuddy.group").Group
-local g = require("colorbuddy.group").groups
-local s = require("colorbuddy.style").styles
+---- Tabnine --------------------------------
 
-Group.new("CmpItemAbbr", g.Comment)
-Group.new("CmpItemAbbrDeprecated", g.Error)
-Group.new("CmpItemAbbrMatchFuzzy", g.CmpItemAbbr.fg:dark(), nil, s.italic)
-Group.new("CmpItemKind", g.Special)
-Group.new("CmpItemMenu", g.NonText)
+require('tabnine').setup({
+  disable_auto_comment = true,
+  accept_keymap = "<Tab>",
+  dismiss_keymap = "<C-]>",
+  debounce_ms = 800,
+  suggestion_color = { gui = "#808080", cterm = 244 },
+  exclude_filetypes = { "TelescopePrompt" },
+  log_file_path = nil, -- absolute path to Tabnine log file
+})

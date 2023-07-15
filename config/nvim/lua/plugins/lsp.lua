@@ -1,18 +1,15 @@
 return {
   {
     "neovim/nvim-lspconfig",
-     config = function()
-       require "cicingik.lsp"
-     end,
-     dependencies = {
-        {
-            "SmiteshP/nvim-navbuddy",
-            dependencies = {
-                "SmiteshP/nvim-navic",
-                "MunifTanjim/nui.nvim"
-            },
-            opts = { lsp = { auto_attach = true } }
-        }
+    dependencies = {
+      {
+        "SmiteshP/nvim-navbuddy",
+        dependencies = {
+          "SmiteshP/nvim-navic",
+          "MunifTanjim/nui.nvim"
+        },
+        opts = { lsp = { auto_attach = true } }
+      }
     },
   },
   "williamboman/mason.nvim",
@@ -30,12 +27,10 @@ return {
   },
 
   "simrat39/inlay-hints.nvim",
-  {"j-hui/fidget.nvim", tag = 'legacy'},
+  { "j-hui/fidget.nvim", tag = 'legacy' },
   "folke/neodev.nvim",
   "jose-elias-alvarez/null-ls.nvim",
-  "jose-elias-alvarez/nvim-lsp-ts-utils",
-  "scalameta/nvim-metals",
-  "b0o/schemastore.nvim",
+  "b0o/schemastore.nvim", -- JSON schemas for Neovim
   {
     "nvimdev/lspsaga.nvim",
     dev = true,

@@ -1,27 +1,19 @@
 return {
   { "nvim-lua/plenary.nvim", dev = false },
-  { "tjdevries/cyclist.vim" },
-  { "tjdevries/express_line.nvim", dev = false },
-  -- { "tjdevries/overlength.vim" },
-  { "tjdevries/green_light.nvim" },
-  { "tjdevries/complextras.nvim" },
-  { "tjdevries/vim9jit" },
-  { "tjdevries/monkey.nvim" },
-  { "tjdevries/complextras.nvim" },
-  "milisims/nvim-luaref",
+  { "tjdevries/express_line.nvim", dev = false }, -- status line
+  "tjdevries/cyclist.vim", -- cycle + listchars
+  "tjdevries/complextras.nvim", -- ins-completion in neovim
+  "tjdevries/vim9jit",
+  "milisims/nvim-luaref", -- vim :help reference for lua
   "tpope/vim-surround",
   "godlygeek/tabular", -- Quickly align text by pattern
   "tpope/vim-repeat", -- Repeat actions better
   "tpope/vim-abolish", -- Cool things with words!
-  "tpope/vim-characterize", -- ?
+  "tpope/vim-characterize",
   "tpope/vim-scriptease",
   "romainl/vim-qf",
-  "mkitt/tabline.vim",
+  "mkitt/tabline.vim", -- tab in nvim
   "monaqa/dial.nvim",
-  "TimUntersberger/neogit",
-  "xiyaowong/nvim-transparent",
-  "tjdevries/colorbuddy.nvim",
-  "simrat39/rust-tools.nvim",
   {
     "luukvbaal/statuscol.nvim",
     config = function()
@@ -29,14 +21,5 @@ return {
         setopt = true,
       }
     end,
-  },
-
-  {
-    "glacambre/firenvim",
-    build = function()
-      vim.fn["firenvim#install"](0)
-    end,
-  },
-
-  "projekt0n/github-nvim-theme",
+  }, -- configurable 'statuscolumn' and click handlers.
 }

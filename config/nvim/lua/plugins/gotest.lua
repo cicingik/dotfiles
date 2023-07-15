@@ -1,3 +1,0 @@
-return {
-  "buoto/gotests-vim"
-}

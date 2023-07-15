@@ -1,4 +1,4 @@
-local nmap = require("keymap").nmap
+local nmap = require("mapper").nmap
 
 vim.diagnostic.config {
   underline = true,

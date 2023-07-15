@@ -1,4 +1,4 @@
----@tag lazy-require
+--@tag lazy-require
 
 ---@brief [[
 --- Lazy.nvim is a set of helper functions to make requiring modules easier.
