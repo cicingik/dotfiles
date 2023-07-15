@@ -1,12 +1,16 @@
 return {
   {
     "neovim/nvim-lspconfig",
+    config = function()
+      require "custom.lsp"
+    end,
     dependencies = {
       {
         "SmiteshP/nvim-navbuddy",
         dependencies = {
           "SmiteshP/nvim-navic",
-          "MunifTanjim/nui.nvim"
+          "MunifTanjim/nui.nvim",
+          "jose-elias-alvarez/null-ls.nvim",
         },
         opts = { lsp = { auto_attach = true } }
       }
@@ -26,7 +30,7 @@ return {
     end,
   },
 
-  "simrat39/inlay-hints.nvim",
+  -- "simrat39/inlay-hints.nvim",
   { "j-hui/fidget.nvim", tag = 'legacy' },
   "folke/neodev.nvim",
   "jose-elias-alvarez/null-ls.nvim",

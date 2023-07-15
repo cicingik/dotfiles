@@ -382,7 +382,7 @@ map("<leader><F5>", function()
     return
   end
 
-  R("cicingik.dap").select_rust_runnable()
+  R("custom.dap").select_rust_runnable()
 end)
 
 map("<F1>", require("dap").step_back, "step_back")
