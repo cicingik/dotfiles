@@ -236,17 +236,18 @@ tmux_conf_theme_right_separator_sub="|"
 #     - #{uptime_s}
 #     - #{username}
 #     - #{username_ssh}
-tmux_conf_theme_status_left='❐ #S | ↑#{?uptime_y, #{uptime_y}y,}#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} | #{?battery_status, #{battery_status},}#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} '
-tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} | %R , %d %b | #(/bin/bash $HOME/.kube.tmux 250 black black) '
+#     - ↑#{?uptime_y, #{uptime_y}y,}#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,}
+tmux_conf_theme_status_left=' ❐ #S | %R , %d %b | #{?battery_status, #{battery_status},}#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} | #($HOME/.tmux/plugins/tmux-network-bandwidth/scripts/network-bandwidth.sh) '
+tmux_conf_theme_status_right=' #($HOME/.tmux/plugins/tmux-mem-cpu-load/tmux-mem-cpu-load -g 0 -a 0 -i 2)| #{prefix}#{pairing}#{synchronized} | #(/bin/bash $HOME/.kube.tmux 250 black black) '
 # status left style
-tmux_conf_theme_status_left_fg="$tmux_conf_theme_colour_1,$tmux_conf_theme_colour_1,$tmux_conf_theme_colour_1,$tmux_conf_theme_colour_12"
-tmux_conf_theme_status_left_bg="$tmux_conf_theme_colour_3,$tmux_conf_theme_colour_18,$tmux_conf_theme_colour_3,$tmux_conf_theme_colour_1"
+tmux_conf_theme_status_left_fg="$tmux_conf_theme_colour_1,$tmux_conf_theme_colour_1,$tmux_conf_theme_colour_1,$tmux_conf_theme_colour_1,$tmux_conf_theme_colour_12"
+tmux_conf_theme_status_left_bg="$tmux_conf_theme_colour_3,$tmux_conf_theme_colour_18,$tmux_conf_theme_colour_3,$tmux_conf_theme_colour_18,$tmux_conf_theme_colour_1"
 tmux_conf_theme_status_left_attr="bold,none,none,none,none"
 
 # status right style
 tmux_conf_theme_status_right_fg="$tmux_conf_theme_colour_1,$tmux_conf_theme_colour_1,$tmux_conf_theme_colour_1,$tmux_conf_theme_colour_1,$tmux_conf_theme_colour_1"
 tmux_conf_theme_status_right_bg="$tmux_conf_theme_colour_3,$tmux_conf_theme_colour_3,$tmux_conf_theme_colour_18,$tmux_conf_theme_colour_3,$tmux_conf_theme_colour_18"
-tmux_conf_theme_status_right_attr="none,none,none,none,none"
+tmux_conf_theme_status_right_attr="none,none,none,none,none,none"
 
 # pairing indicator
 tmux_conf_theme_pairing="⚇"                 # U+2687
@@ -279,15 +280,15 @@ tmux_conf_theme_synchronized_bg="none"
 tmux_conf_theme_synchronized_attr="none"
 
 # battery bar symbols
-tmux_conf_battery_bar_symbol_full="◼"
-tmux_conf_battery_bar_symbol_empty="◻"
-#tmux_conf_battery_bar_symbol_full="♥"
-#tmux_conf_battery_bar_symbol_empty="·"
+#tmux_conf_battery_bar_symbol_full="◼"
+#tmux_conf_battery_bar_symbol_empty="◻"
+tmux_conf_battery_bar_symbol_full="♥"
+tmux_conf_battery_bar_symbol_empty="·"
 
 # battery bar length (in number of symbols), possible values are:
 #   - auto
 #   - a number, e.g. 5
-tmux_conf_battery_bar_length="auto"
+tmux_conf_battery_bar_length="5"
 
 # battery bar palette, possible values are:
 #   - gradient (default)
@@ -300,7 +301,7 @@ tmux_conf_battery_bar_palette="gradient"
 #   - gradient (default)
 #   - heat
 #   - "colour_low,colour_half,colour_full"
-tmux_conf_battery_hbar_palette="gradient"
+tmux_conf_battery_hbar_palette="heat"
 #tmux_conf_battery_hbar_palette="#d70000,#ff5f00,#5fff00"  # red, orange, green
 
 # battery vbar palette, possible values are:
@@ -330,7 +331,7 @@ tmux_conf_theme_clock_style="24"
 #   - disabled
 # on macOS, this requires installing reattach-to-user-namespace, see README.md
 # on Linux, this requires xsel, xclip or wl-copy
-tmux_conf_copy_to_os_clipboard=false
+tmux_conf_copy_to_os_clipboard=true
 
 
 # -- user customizations -------------------------------------------------------
@@ -455,6 +456,8 @@ set -g @tpm_plugins '           \
    tmux-plugins/tmux-prefix-highlight \
    tmux-plugins/tmux-fpp \
    tmux-plugins/tmux-copycat \
+   thewtex/tmux-mem-cpu-load \
+   xamut/tmux-network-bandwidth \
 '
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)

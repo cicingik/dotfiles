@@ -34,20 +34,4 @@ just open `tmux` for auto install all needed plugins
 tmux
 ```
 
-### installing plugin neovim
-- Install neovim Plugin Manager
-  ```bash
-  git clone --depth 1 https://github.com/wbthomason/packer.nvim\
-  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-  ```
-
-- Install all plugins
-  ```bash
-  -- open some file
-  nvim README.md
-  ```
-  run `PackerInstall`
-
-  <div align="center">
-    <img width="80%" src="./docs/PackerInstall.png">
-  </div>
+or press `prefix + I` to fetch the plugin and source it. Done.
