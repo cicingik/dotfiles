@@ -1,7 +1,7 @@
-# dotfiles
+# Dotfiles
 personal configuration
 
-## pre-required
+## Requirements
 - [ohmyz](https://ohmyz.sh)
 - [tmux](https://github.com/tmux/tmux/wiki/Installing)
 - [neovim 0.8+](https://neovim.io) 
@@ -11,27 +11,26 @@ personal configuration
   brew install --cask font-hack-nerd-font
   ```
 
-## installation
+## Installation
 
-### clone repository
+### Available Commands
 ```bash
-git clone https://github.com/cicingik/dotfiles.git
-cd dotfiles
+Usage: ./install.sh <command>
 
--- backup all config to "$HOME/dotfiles-backup"
-./install.sh backup
-
--- install dotfiles
-./install.sh symlink
-
--- reload .zshrc 
-source ~/.zshrc
+Info: Available commands:
+all   : Setup nvim and zsh; overide all existing configuration.
+nvim  : Setup nvim; overide all existing configuration.
 ```
 
-### installing tmux plugins
+### tmux plugins
+
+```
+prefix C-a
+```
+
 just open `tmux` for auto install all needed plugins
 ```bash
 tmux
 ```
 
-or press `prefix + I` to fetch the plugin and source it. Done.
+and press `prefix + I` to fetch the plugin and source it. Done.

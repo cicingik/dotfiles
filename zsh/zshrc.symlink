@@ -132,7 +132,7 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-alias v=nvim
+alias ide=nvim
 alias c=clear
 
 alias gops="$HOME/.gvm/pkgsets/go1.18/global/bin/gops"

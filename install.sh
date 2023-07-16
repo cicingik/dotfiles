@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DOTFILES="$(pwd)"
+# Variables
 COLOR_GRAY="\033[1;38;5;243m"
 COLOR_BLUE="\033[1;34m"
 COLOR_GREEN="\033[1;32m"
@@ -8,6 +8,9 @@ COLOR_RED="\033[1;31m"
 COLOR_PURPLE="\033[1;35m"
 COLOR_YELLOW="\033[1;33m"
 COLOR_NONE="\033[0m"
+
+DOTFILES="$(pwd)"
+BACKUP_DIR=$HOME/dotfiles-backup
 
 title() {
     echo -e "\n${COLOR_PURPLE}$1${COLOR_NONE}"
@@ -36,10 +39,8 @@ get_linkables() {
 }
 
 backup() {
-    BACKUP_DIR=$HOME/dotfiles-backup
-
     title "Backing Up"
-    echo "Creating backup directory at $BACKUP_DIR"
+    info "Creating backup directory at $BACKUP_DIR"
     mkdir -p "$BACKUP_DIR"
 
     for file in $(get_linkables); do
@@ -95,7 +96,6 @@ backup() {
         fi
 
     done
-
 }
 
 setup_symlinks() {
@@ -130,21 +130,68 @@ setup_symlinks() {
     done
 }
 
+setup_nvim() {
+    title "Backing Up"
+    info "Creating backup directory at $BACKUP_DIR"
+    mkdir -p "$BACKUP_DIR"
+
+    config="$DOTFILES/config/nvim"
+    target="$HOME/.config/nvim"
+    if [ ! -L "$target" ]; then
+        if [ -d "$target" ]; then
+            info "backing up $target"
+            mv -f "$target" "$BACKUP_DIR"
+        elif [[ -f "$target" ]]; then
+            info "backing up $target"
+            mv "$target" "$BACKUP_DIR"
+        else
+            warning "$target does not exist at this location or is a symlink"
+            warning "removing $target"
+            rm -rf "$target"
+        fi
+    else
+        warning "$target does not exist at this location or is a symlink"
+        warning "removing $target"
+        rm -rf "$target"
+    fi
+
+    echo -e
+    info "installing to ~/.config"
+    ln -f -s "$config" "$target"
+}
+
+help() {
+    echo -e $"\nUsage: ./$(basename "$0") <command>\n"
+    info "Available commands:"
+    echo -e $"all   : Setup nvim and zsh; overide all existing configuration."
+    echo -e $"nvim  : Setup nvim; overide all existing configuration."
+}
+
+all() {
+    info "All backup config will store at $BACKUP_DIR"
+    warning "Are you sure will overide all config for nvim and zsh? ([Y]es/[N]o)"
+    read
+    if [[ $REPLY == "y" || $REPLY == "Y" || $REPLY == "Yes" ]]; then
+      backup
+      setup_symlinks
+    fi
+}
+
 case "$1" in
-  backup)
-    backup
-    ;;
-  symlink)
-    setup_symlinks
-    ;;
-  help)
-    echo -e $"\nUsage: $(basename "$0") {backup|symlink}\n"
-    exit 1
-    ;;
-  *)
-    echo -e $"\nUsage: $(basename "$0") {backup|symlink}\n"
-    exit 1
-    ;;
+    all)
+        all
+        ;;
+    nvim)
+        setup_nvim
+        ;;
+    help)
+        help
+        exit 0
+        ;;
+    *)
+        help
+        exit 1
+        ;;
 esac
 
 echo -e
