@@ -13,8 +13,8 @@ This is my personal configuration for code in terminal. Including tmux, nvim, om
 ```bash
 Usage: ./install.sh <command>
 
-Info: Available commands:
-all   : Setup nvim and zsh; overide all existing configuration.
+Available commands:
+all   : Setup all dottfile config; overide all existing configuration.
 nvim  : Setup nvim; overide all existing configuration.
 ```
 
