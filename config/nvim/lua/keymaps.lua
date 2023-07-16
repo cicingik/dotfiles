@@ -29,3 +29,14 @@ keymap.set("n", "<leader>h", "<cmd>HopWord<CR>", { silent = true })
 
 -- NavBuddy
 keymap.set("n", "<leader>N", "<cmd>Navbuddy<CR>", { silent = true })
+
+-- ZenMode
+keymap.set("n", "<leader>Z", "<cmd>ZenMode<CR>", { silent = true })
+
+-- Wiki
+keymap.set("n", "<leader>dd", '<cmd>lua R("custom.wiki").make_diary_entry()<CR>', { noremap = true })
+keymap.set("n", "<leader>td", '<cmd>lua R("custom.wiki").make_todo()<CR>', { noremap = true })
+
+-- Trouble
+keymap.set("n", "<leader>x", "<cmd>TroubleToggle<CR>")                                         -- Show all problems in project (with help of LSP)
+keymap.set("n", "gr", "<cmd>Trouble lsp_references<CR>")                                       -- Show use of object in project

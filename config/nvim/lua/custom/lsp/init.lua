@@ -111,8 +111,8 @@ local custom_attach = function(client, bufnr)
 
   telescope_mapper("gr", "lsp_references", nil, true)
   telescope_mapper("gI", "lsp_implementations", nil, true)
-  telescope_mapper("<space>wd", "lsp_document_symbols", { ignore_filename = true }, true)
-  telescope_mapper("<space>ww", "lsp_dynamic_workspace_symbols", { ignore_filename = true }, true)
+  telescope_mapper("<space>ds", "lsp_document_symbols", { ignore_filename = true }, true)
+  telescope_mapper("<space>ws", "lsp_dynamic_workspace_symbols", { ignore_filename = true }, true)
 
   vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 

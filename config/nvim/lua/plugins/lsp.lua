@@ -39,5 +39,4 @@ return {
     "nvimdev/lspsaga.nvim",
     dev = true,
   },
-  -- "fatih/vim-go",
 }

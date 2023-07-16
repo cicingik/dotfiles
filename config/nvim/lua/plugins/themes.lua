@@ -9,7 +9,7 @@ return {
       end,
   },
   "tjdevries/colorbuddy.nvim", -- making cool neovim color schemes
-  "norcalli/nvim-colorizer.lua",
+  "norcalli/nvim-colorizer.lua", -- highlighter colour code
    {
      "norcalli/nvim-terminal.lua",
      config = function()

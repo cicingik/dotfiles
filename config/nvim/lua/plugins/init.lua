@@ -22,4 +22,10 @@ return {
       }
     end,
   }, -- configurable 'statuscolumn' and click handlers.
+  "vimwiki/vimwiki",
+  {
+    "folke/trouble.nvim",
+    lazy = true,
+    dependencies = "kyazdani42/nvim-web-devicons",
+  },
 }

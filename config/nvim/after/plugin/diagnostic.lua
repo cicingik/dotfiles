@@ -84,7 +84,7 @@ nmap {
   "<space>sl",
   function()
     vim.diagnostic.open_float(0, {
-      scope = "line",
+      scope = "line"
     })
   end,
 }
