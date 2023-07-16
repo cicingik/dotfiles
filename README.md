@@ -1,15 +1,11 @@
 # Dotfiles
-This is my personal configuration for code in terminal. Including nvim, omyz, and alacritty.
+This is my personal configuration for code in terminal. Including tmux, nvim, omyz, and alacritty.
 
 ## Requirements
 - [ohmyz](https://ohmyz.sh)
 - [tmux](https://github.com/tmux/tmux/wiki/Installing)
 - [neovim 0.8+](https://neovim.io) 
-- Nerd Font
-  ```bash
-  brew tap homebrew/cask-fonts
-  brew install --cask font-hack-nerd-font
-  ```
+- [Nerd Font](https://github.com/ryanoasis/nerd-fonts#font-installation)
 
 ## Installation
 
