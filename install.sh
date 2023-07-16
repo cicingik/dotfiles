@@ -162,8 +162,8 @@ setup_nvim() {
 
 help() {
     echo -e $"\nUsage: ./$(basename "$0") <command>\n"
-    info "Available commands:"
-    echo -e $"all   : Setup nvim and zsh; overide all existing configuration."
+    echo -e "${COLOR_BLUE}Available commands:${COLOR_NONE}$1"
+    echo -e $"all   : Setup all dottfile config; overide all existing configuration."
     echo -e $"nvim  : Setup nvim; overide all existing configuration."
 }
 

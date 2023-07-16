@@ -1,5 +1,5 @@
 # Dotfiles
-personal configuration
+This is my personal configuration for code in terminal. Including nvim, omyz, and alacritty.
 
 ## Requirements
 - [ohmyz](https://ohmyz.sh)
