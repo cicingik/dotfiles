@@ -1,4 +1,4 @@
-local nmap = require("keymap").nmap
+local nmap = require("mapper").nmap
 
 vim.diagnostic.config {
   underline = true,
@@ -84,7 +84,7 @@ nmap {
   "<space>sl",
   function()
     vim.diagnostic.open_float(0, {
-      scope = "line",
+      scope = "line"
     })
   end,
 }

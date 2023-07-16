@@ -3,8 +3,8 @@ return {
     "nvim-telescope/telescope.nvim",
     priority = 100,
     config = function()
-      require "cicingik.telescope.setup"
-      require "cicingik.telescope.keys"
+      require "custom.telescope.setup"
+      require "custom.telescope.keys"
     end,
   },
   "nvim-telescope/telescope-file-browser.nvim",

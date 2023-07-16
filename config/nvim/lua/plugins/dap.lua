@@ -5,7 +5,7 @@ return {
   "nvim-telescope/telescope-dap.nvim",
 
   --  Adaparter configuration for specific languages
-  { "leoluz/nvim-dap-go" },
-  { "mfussenegger/nvim-dap-python" },
+  "leoluz/nvim-dap-go",
+  "mfussenegger/nvim-dap-python",
   "jbyuki/one-small-step-for-vimkind",
 }

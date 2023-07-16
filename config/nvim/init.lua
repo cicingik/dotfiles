@@ -8,13 +8,13 @@ if vim.g.neovide then
   vim.o.guifont = "Jetbrains Mono"
 end
 
--- Leader key -> ","
+-- Leader key -> " "
 --
 -- In general, it's a good idea to set this early in your config, because otherwise
 -- if you have any mappings you set BEFORE doing this, they will be set to the OLD
 -- leader.
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.maplocalleader = ","
 
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -51,4 +51,3 @@ require("lazy").setup("plugins", {
     },
   },
 })
-
