@@ -64,6 +64,8 @@ let g:vimwiki_list = [
                 \ 'template_ext': '.html',
                 \ 'auto_export': 0,
                 \ 'nested_syntaxes': nested_syntaxes,
+                \ 'syntax': 'markdown',
+                \ 'ext': '.md',
             \ },
             \ ]
 
@@ -126,12 +128,12 @@ endfunction
 
 augroup tjVimWiki
   au!
-  au BufNewFile,BufRead,BufEnter *.wiki set foldmethod=marker
+  au BufNewFile,BufRead,BufEnter *.md set foldmethod=marker
   " au BufWritePost *.wiki VimwikiRebuildTags
 
   " This is probably too often... but oh well
   " Could perhaps even do it in a filetype
-  au BufNewfile,BufRead,BufEnter *.wiki nnoremap <buffer> <CR> :call <SID>map_enter()<CR>
+  au BufNewfile,BufRead,BufEnter *.md nnoremap <buffer> <CR> :call <SID>map_enter()<CR>
 augroup END
 
 " let g:wiki_home = $HOME .. '/.local/wiki/'

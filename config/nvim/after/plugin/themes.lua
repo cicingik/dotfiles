@@ -2,16 +2,10 @@ if not pcall(require, "colorbuddy") then
   return
 end
 
-vim.opt.termguicolors = true
-require("colorbuddy").colorscheme "everforest"
-require("colorizer").setup()
-
-vim.g.everforest_diagnostic_line_highlight = 1
-
 require("everforest").setup({
   ---Controls the "hardness" of the background. Options are "soft", "medium" or "hard".
   ---Default is "medium".
-  background = "medium",
+  background = "hard",
   ---How much of the background should be transparent. 2 will have more UI
   ---components be transparent (e.g. status line background)
   transparent_background_level = 0,
@@ -25,7 +19,7 @@ require("everforest").setup({
   sign_column_background = "none",
   ---The contrast of line numbers, indent lines, etc. Options are `"high"` or
   ---`"low"` (default).
-  ui_contrast = "low",
+  ui_contrast = "high",
   ---Dim inactive windows. Only works in Neovim. Can look a bit weird with Telescope.
   dim_inactive_windows = false,
   ---Some plugins support highlighting error/warning/info/hint texts, by
@@ -96,5 +90,11 @@ require('illuminate').configure({
     -- min_count_to_highlight: minimum number of matches required to perform highlighting
     min_count_to_highlight = 1,
 })
+
+vim.opt.termguicolors = true
+require("colorbuddy").colorscheme "everforest"
+require("colorizer").setup()
+
+vim.g.everforest_diagnostic_line_highlight = 1
 
 vim.cmd("hi def IlluminatedWordText gui=underline")

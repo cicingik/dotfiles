@@ -106,7 +106,7 @@ local custom_attach = function(client, bufnr)
   buf_nnoremap { "K", vim.lsp.buf.hover, { desc = "lsp:hover" } }
 
   buf_nnoremap { "<space>gI", handlers.implementation }
-  buf_nnoremap { "<space>lr", "<cmd>lua R('cicingik.lsp.codelens').run()<CR>" }
+  buf_nnoremap { "<space>lr", "<cmd>lua R('custom.lsp.codelens').run()<CR>" }
   buf_nnoremap { "<space>rr", "LspRestart" }
 
   telescope_mapper("gr", "lsp_references", nil, true)

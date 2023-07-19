@@ -12,7 +12,7 @@ local c = ls.choice_node
 -- local f = ls.function_node
 local fmt = require("luasnip.extras.fmt").fmt
 
-local shared = R "tj.snips"
+local shared = R "custom.snips"
 local same = shared.same
 
 -- ls.cl

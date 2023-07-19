@@ -40,3 +40,7 @@ keymap.set("n", "<leader>td", '<cmd>lua R("custom.wiki").make_todo()<CR>', { nor
 -- Trouble
 keymap.set("n", "<leader>x", "<cmd>TroubleToggle<CR>")                                         -- Show all problems in project (with help of LSP)
 keymap.set("n", "gr", "<cmd>Trouble lsp_references<CR>")                                       -- Show use of object in project
+
+-- TabNine for Pro Accounts
+keymap.set("i", "<leader>tc", "", { noremap = true, callback = require("tabnine.chat").open })
+keymap.set("n", "<leader>tc", "", { noremap = true, callback = require("tabnine.chat").open })

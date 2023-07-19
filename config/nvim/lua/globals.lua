@@ -8,8 +8,8 @@ opt.relativenumber = true
 vim.scriptencoding = 'utf-8'
 opt.encoding = 'utf-8'
 opt.fileencoding = 'utf-8'
-opt.scrolloff = 5
-opt.sidescrolloff = 5
+opt.scrolloff = 3
+opt.sidescrolloff = 3
 
 -- Search Options
 opt.hlsearch = true
@@ -42,6 +42,25 @@ opt.timeoutlen = 500
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+
+-- VimWiki
+vim.g.vimwiki_path = '~/develop/wiki/'
+vim.g.export_path = '~/develop/export/'
+
+vim.g.vimwiki_list = {
+            {
+                path='~/develop/wiki/',
+                path_html= '~/develop/wiki/html/',
+                template_path= '~/develop/wiki/html/vimwiki-theme/templates/',
+                template_default= 'default',
+                template_ext= '.html',
+                auto_export= 0,
+                -- nested_syntaxes= nested_syntaxes,
+                syntax= 'markdown',
+                ext= '.md',
+            },
+          }
+
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()

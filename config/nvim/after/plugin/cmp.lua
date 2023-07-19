@@ -35,7 +35,11 @@ cmp.setup({
       end
     },
     { name = 'luasnip' }, -- For luasnip users.
-  }, {
+  },
+  {
+    { name = "cmp_tabnine" },
+  },
+  {
     { name = 'buffer' },
   }),
   formatting = {
