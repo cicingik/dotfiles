@@ -28,4 +28,5 @@ return {
     lazy = true,
     dependencies = "kyazdani42/nvim-web-devicons",
   },
+  "folke/which-key.nvim",
 }

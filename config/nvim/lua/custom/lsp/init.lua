@@ -343,6 +343,10 @@ require("null-ls").setup {
   },
 }
 
+lspconfig.ruff_lsp.setup {
+  on_attach = custom_attach,
+}
+
 return {
   on_init = custom_init,
   on_attach = custom_attach,

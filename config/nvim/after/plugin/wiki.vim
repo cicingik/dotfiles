@@ -58,7 +58,7 @@ let g:vimwiki_folding = ''
 let g:vimwiki_list = [
             \ {
                 \ 'path': vimwiki_path,
-                \ 'path_html': export_path . 'html/',
+                \ 'path_html': export_path . 'html',
                 \ 'template_path': export_path . 'html/vimwiki-theme/templates/',
                 \ 'template_default': 'default',
                 \ 'template_ext': '.html',

@@ -16,7 +16,7 @@ keymap.set("n", "gh", "<cmd>Lspsaga lsp_finder<CR>")
 keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>")
 
 -- make test for golang
--- keymap.set("n", "<leader>gt", "<cmd>GoTests<CR>")
+keymap.set("n", "<leader>gt", "<cmd>GoTests<CR>")
 
 -- presentation
 keymap.set("n", "<leader>pp", "<cmd>PresentingStart<CR>")
@@ -31,7 +31,7 @@ keymap.set("n", "<leader>h", "<cmd>HopWord<CR>", { silent = true })
 keymap.set("n", "<leader>N", "<cmd>Navbuddy<CR>", { silent = true })
 
 -- ZenMode
-keymap.set("n", "<leader>Z", "<cmd>ZenMode<CR>", { silent = true })
+keymap.set("n", "<leader>z", "<cmd>ZenMode<CR>", { silent = true })
 
 -- Wiki
 keymap.set("n", "<leader>dd", '<cmd>lua R("custom.wiki").make_diary_entry()<CR>', { noremap = true })
@@ -40,6 +40,10 @@ keymap.set("n", "<leader>td", '<cmd>lua R("custom.wiki").make_todo()<CR>', { nor
 -- Trouble
 keymap.set("n", "<leader>x", "<cmd>TroubleToggle<CR>")                                         -- Show all problems in project (with help of LSP)
 keymap.set("n", "gr", "<cmd>Trouble lsp_references<CR>")                                       -- Show use of object in project
+
+
+-- Markdown
+keymap.set("n", "<leader>M", "<cmd>MarkdownPreview<CR>", { silent = true })
 
 -- TabNine for Pro Accounts
 keymap.set("i", "<leader>tc", "", { noremap = true, callback = require("tabnine.chat").open })

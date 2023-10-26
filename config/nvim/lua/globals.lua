@@ -45,13 +45,16 @@ vim.g.loaded_netrwPlugin = 1
 
 -- VimWiki
 vim.g.vimwiki_path = '~/develop/wiki/'
-vim.g.export_path = '~/develop/export/'
+vim.g.export_path = '~/develop/wiki/export/'
+vim.g.vimwiki_global_ext = 0
+vim.g.vimwiki_ext2syntax = {['.md'] = 'markdown', ['.markdown'] = 'markdown'}
+vim.g.vimwiki_custom_wiki2html='~/.local/share/nvim/lazy/vimwiki/autoload/vimwiki/customwiki2html.sh'
 
 vim.g.vimwiki_list = {
             {
                 path='~/develop/wiki/',
-                path_html= '~/develop/wiki/html/',
-                template_path= '~/develop/wiki/html/vimwiki-theme/templates/',
+                path_html= '~/develop/wiki/html',
+                template_path= '',
                 template_default= 'default',
                 template_ext= '.html',
                 auto_export= 0,
@@ -83,11 +86,6 @@ P = function(v)
 end
 
 RELOAD = function(...)
-  local ok, plenary_reload = pcall(require, "plenary.reload")
-  if ok then
-    reloader = plenary_reload.reload_module
-  end
-
   return reloader(...)
 end
 
