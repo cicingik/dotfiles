@@ -1,0 +1,28 @@
+# Docker Compose description of the combined application.
+# 'docker-compose up' will run this.
+version: "3" # requires Docker Compose 1.13 or later
+
+# This section describes the various containers (services).
+services:
+  redis:
+    image: docker.io/bitnami/redis:6.2
+    environment:
+      # ALLOW_EMPTY_PASSWORD is recommended only for development.
+      - ALLOW_EMPTY_PASSWORD=yes
+      - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
+    ports:
+      - "6379:6379"
+    volumes:
+      - "redis-data:/bitnami/redis/data"
+    networks:
+      - finfini-network
+
+networks:
+  # Declare our private network.  We must declare one for the magic
+  # Docker DNS to work, but otherwise its default settings are fine.
+  finfini-network:
+    driver: bridge
+
+volumes:
+  redis-data:
+    driver: local
