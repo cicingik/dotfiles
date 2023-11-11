@@ -42,4 +42,4 @@
 --   end
 -- })
 --
-vim.g.python3_host_prog = '/Users/koinworks/.pyenv/shims/python'
+vim.g.python3_host_prog = '/home/koinworks/.pyenv/versions/nvim/bin/python'

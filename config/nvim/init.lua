@@ -28,14 +28,17 @@ if not vim.loop.fs_stat(lazypath) then
   }
 end
 vim.opt.runtimepath:prepend(lazypath)
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.cmd([[ set nofoldenable]])
 
 require("lazy").setup("plugins", {
-  dev = {
+   dev = {
     -- directory where you store your local plugin projects
     path = "~/plugins",
     fallback = false,
   },
-  ui = {
+    ui = {
     icons = {
       cmd = "⌘",
       config = "🛠",
@@ -49,5 +52,5 @@ require("lazy").setup("plugins", {
       start = "🚀",
       task = "📌",
     },
-  },
+  },  
 })

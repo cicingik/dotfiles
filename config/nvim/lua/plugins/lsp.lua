@@ -37,6 +37,5 @@ return {
   "b0o/schemastore.nvim", -- JSON schemas for Neovim
   {
     "nvimdev/lspsaga.nvim",
-    dev = true,
   },
 }

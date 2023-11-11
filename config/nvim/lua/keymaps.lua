@@ -17,6 +17,7 @@ keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>")
 
 -- make test for golang
 keymap.set("n", "<leader>gt", "<cmd>GoTests<CR>")
+keymap.set("n", "<leader>gT", "<cmd>GoTestsAll<CR>")
 
 -- presentation
 keymap.set("n", "<leader>pp", "<cmd>PresentingStart<CR>")
@@ -46,5 +47,5 @@ keymap.set("n", "gr", "<cmd>Trouble lsp_references<CR>")                        
 keymap.set("n", "<leader>M", "<cmd>MarkdownPreview<CR>", { silent = true })
 
 -- TabNine for Pro Accounts
-keymap.set("i", "<leader>tc", "", { noremap = true, callback = require("tabnine.chat").open })
-keymap.set("n", "<leader>tc", "", { noremap = true, callback = require("tabnine.chat").open })
+-- keymap.set("i", "<leader>tc", "", { noremap = true, callback = require("tabnine.chat").open })
+-- keymap.set("n", "<leader>tc", "", { noremap = true, callback = require("tabnine.chat").open })
