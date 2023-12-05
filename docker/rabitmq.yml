@@ -28,14 +28,7 @@ services:
     # (the name of this section) and the internal port 5672, even though
     # that's not explicitly published above.
     networks:
-      - finfini-network
-
-  mongo:
-    image: 'mongo'
-    ports:
-      - '27017:27017'
-    networks:
-        - finfini-network
+      - finfini-network 
 
 #  consumer:
 #    # If needed, Docker Compose will automatically run consumer/Dockerfile.

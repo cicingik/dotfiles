@@ -14,14 +14,13 @@ services:
       - "6379:6379"
     volumes:
       - "redis-data:/bitnami/redis/data"
-    networks:
-      - finfini-network
 
-networks:
-  # Declare our private network.  We must declare one for the magic
-  # Docker DNS to work, but otherwise its default settings are fine.
-  finfini-network:
-    driver: bridge
+
+# networks:
+#   # Declare our private network.  We must declare one for the magic
+#   # Docker DNS to work, but otherwise its default settings are fine.
+#   finfini-network:
+#     driver: bridge
 
 volumes:
   redis-data:
