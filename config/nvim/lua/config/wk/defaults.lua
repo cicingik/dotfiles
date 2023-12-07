@@ -1,5 +1,5 @@
 return {
   mode = { "n", "v" },
-  w = { ":w!<CR>", "Save" },
-  q = { ":confirm q<CR>", "Quit" },
+  w = { "<cmd>w!<CR>", "Save" },
+  q = { "<cmd>confirm q<CR>", "Quit" },
 }
