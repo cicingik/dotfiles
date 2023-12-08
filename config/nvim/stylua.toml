@@ -1,0 +1,3 @@
+ndent_type = "Spaces"
+indent_width = 2
+column_width = 120
