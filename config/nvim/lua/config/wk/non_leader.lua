@@ -6,28 +6,23 @@ return {
   h = { "<cmd>nohlsearch<CR>", "No Highlight" },
   t = { "<cmd>Telescope treesitter<CR>", "List Symbols" },
   f = { "<cmd>lua require('config.utils').telescope_git_or_file()<CR>", "Find Files (Root)" },
-  v = "Go to definition in a split",
-  a = "Swap next param",
-  A = "Swap previous param",
   U = { "<cmd>UndotreeToggle<CR>", "Toggle UndoTree" },
   o = { "<cmd>Telescope buffers<CR>", "Open Buffer" },
   j = { "<cmd>HopWord<CR>", "Go to any word in the current buffer" },
+  K = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover" },
   m = { "<cmd>MarkdownPreview<CR>", "Open markdown in web browser" },
   Z = { "<cmd>ZenMode<CR>", "Zen Mode" },
-  u = {
+  n = {
     name = "UI",
     c = { "<cmd>lua require('config.utils').toggle_set_color_column()<CR>", "Toggle Color Line" },
     l = { "<cmd>lua require('config.utils').toggle_cursor_line()<CR>", "Toggle Cursor Line" },
     b = { "<cmd>lua require('config.utils').change_background()<CR>", "Toggle Background" },
   },
-  i = {
-    name = "Sessions",
+  b = {
+    name = "Buffers & Sessions",
     s = { "<cmd>lua require('persistence').load()<cr>", "Load Session" },
     l = { "<cmd>lua require('persistence').load({ last = true })<cr>", "Load Last Session" },
     d = { "<cmd>lua require('persistence').stop()<cr>", "Stop Persistence" },
-  },
-  b = {
-    name = "Buffers",
     -- j = { "<cmd>BufferLinePick<cr>", "Jump" },
     f = { "<cmd>Telescope buffers previewer=false<cr>", "Find" },
     -- b = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
@@ -59,7 +54,7 @@ return {
       "Git Diff",
     },
   },
-  l = {
+  g = {
     name = "+LSP",
     a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
     A = { "<cmd>lua vim.lsp.buf.range_code_action()<cr>", "Range Code Actions" },
@@ -71,7 +66,6 @@ return {
     s = { "<cmd>lua vim.lsp.buf.signature_help()<cr>", "Display Signature Information" },
     r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename all references" },
     f = { "<cmd>lua vim.lsp.buf.format()<cr>", "Format" },
-    K = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover" },
     l = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document Diagnostics (Trouble)" },
     L = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace Diagnostics (Trouble)" },
     w = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
