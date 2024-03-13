@@ -7,14 +7,12 @@ return {
   dependencies = "nvim-tree/nvim-web-devicons",
   opts = {
     options = {
-      separator_style = { "", "" },
+      separator_style = { "|", "|" },
       indicator = { style = "none" },
-      show_tab_indicators = false,
-
+      show_tab_indicators = true,
       always_show_bufferline = true,
       show_close_icon = false,
       show_buffer_close_icons = false,
-      -- separator_style = { "", "" },
       tab_size = 0,
       max_name_length = 25,
       offsets = {
@@ -26,8 +24,9 @@ return {
         },
       },
       modified_icon = "",
+      buffer_close_icon = '󰅖',
+      close_icon = '',
     },
-
     highlights = {
       fill = {
         bg = "",

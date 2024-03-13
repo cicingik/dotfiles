@@ -22,7 +22,7 @@ M.jumpable = function(dir)
   ---sets the current buffer's luasnip to the one nearest the cursor
   ---@return boolean true if a node is found, false otherwise
   local function seek_luasnip_cursor_node()
-    -- TODO(kylo252): upstream this
+    -- TODO: (kylo252): upstream this
     -- for outdated versions of luasnip
     if not luasnip.session.current_nodes then
       return false

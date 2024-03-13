@@ -21,7 +21,7 @@ return {
       popup_border_style = "single",
       enable_git_status = true,
       enable_modified_markers = true,
-      enable_diagnostics = false,
+      enable_diagnostics = true,
       sort_case_insensitive = true,
       default_component_configs = {
         indent = {

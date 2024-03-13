@@ -20,7 +20,7 @@ local options = {
   },
   -- add operators that will trigger motion and text object completion
   -- to enable all native operators, set the preset / operators plugin above
-  operators = { gc = "Comments" },
+  -- operators = { gc = "Comments" },
   key_labels = {
     -- override the label used to display some keys. It doesn't effect WK in any other way.
     -- For example:
@@ -89,16 +89,16 @@ local options = {
 
 return {
   "folke/which-key.nvim",
-  event = "VeryLazy",
+  event = "VimEnter",
   lazy = true,
   opts = options,
   config = function(_, opts)
     local which_key = require("which-key")
     which_key.setup(opts)
-    which_key.register(require('config.wk.defaults'), {
-      mode = "n",
+    which_key.register(require('config.wk.leader'), {
+      -- mode = "n",
       prefix = "<leader>",
     })
-    which_key.register(require('config.wk.non_leader'))
+    which_key.register(require('config.wk.defaults'))
   end
 }

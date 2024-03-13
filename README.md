@@ -6,6 +6,9 @@ This is my personal configuration for code in terminal. Including tmux, nvim, om
 - [tmux](https://github.com/tmux/tmux/wiki/Installing)
 - [neovim 0.8+](https://neovim.io) 
 - [Nerd Font](https://github.com/ryanoasis/nerd-fonts#font-installation)
+- [Lazy Git](https://github.com/jesseduffield/lazygit)
+- [fd](https://github.com/sharkdp/fd)
+- [ripgrep](https://github.com/BurntSushi/ripgrep)
 
 ## Installation
 
@@ -17,16 +20,3 @@ Available commands:
 all   : Setup all dottfile config; overide all existing configuration.
 nvim  : Setup nvim; overide all existing configuration.
 ```
-
-### tmux plugins
-
-```
-prefix C-a
-```
-
-just open `tmux` for auto install all needed plugins
-```bash
-tmux
-```
-
-and press `prefix + I` to fetch the plugin and source it. Done.

@@ -22,7 +22,7 @@ return {
         jump_close = { "o" },       -- jump to the diagnostic and close the list
         toggle_mode = "m",          -- toggle between "workspace" and "document" diagnostics mode
         toggle_preview = "P",       -- toggle auto_preview
-        hover = "K",                -- opens a small popup with the full multiline message
+        -- hover = "K",                -- opens a small popup with the full multiline message
         preview = "p",              -- preview the diagnostic location
         close_folds = { "zM" },     -- close all folds
         open_folds = { "zR" },      -- open all folds

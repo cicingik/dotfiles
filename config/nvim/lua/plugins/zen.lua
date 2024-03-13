@@ -5,7 +5,7 @@ return {
       require("zen-mode").setup {
         window = {
           backdrop = 1,
-          height = 0.9,
+          height = 1,
           width = 140,
           options = {
             number = false,

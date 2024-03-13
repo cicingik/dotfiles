@@ -1,6 +1,4 @@
 return {
-  "TimUntersberger/neogit", -- git
-
   "rhysd/git-messenger.vim",
 
   "rhysd/committia.vim",     -- Sweet commit messages

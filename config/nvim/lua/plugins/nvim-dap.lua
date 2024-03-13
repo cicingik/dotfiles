@@ -5,6 +5,7 @@ vim.fn.sign_define("DapStopped", { text = "", texthl = "Error" })
 return {
   {
     "theHamsta/nvim-dap-virtual-text",
+    event = "VeryLazy",
     config = function()
       require("nvim-dap-virtual-text").setup({
         enabled = true,
@@ -29,7 +30,7 @@ return {
   },
   {
     "mfussenegger/nvim-dap",
-    lazy = false,
+    event = "VeryLazy",
     enabled = true,
     dependencies = {
       "rcarriga/nvim-dap-ui",

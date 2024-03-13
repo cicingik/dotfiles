@@ -148,15 +148,3 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
   pattern = { "terraform", "hcl" },
 })
-
--- vim.api.nvim_create_autocmd({ "OptionSet" }, {
---   pattern = { "background" },
---   callback = function(ev)
---     if vim.o.background == 'dark' then
---       vim.cmd("colorscheme gruvbox-material")
---     else
---       vim.cmd("colorscheme gruvbox-material")
---     end
---     vim.cmd("mode")
---   end
--- })

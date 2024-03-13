@@ -1,3 +1,8 @@
+vim.cmd([[
+set completeopt=menuone,noinsert,noselect
+highlight! default link CmpItemKind CmpItemMenuDefault
+]])
+
 return {
   {
     'VonHeikemen/lsp-zero.nvim',
@@ -32,9 +37,9 @@ return {
       local icons       = require('config.icons')
       local cmp_action  = require('lsp-zero.cmp').action()
       local cmp_mapping = cmp.mapping
-      local cmp_types   = require('cmp.types.cmp')
+      -- local cmp_types   = require('cmp.types.cmp')
       local luasnip     = require('luasnip')
-      local utils       = require('config.utils')
+      -- local utils       = require('config.utils')
       cmp.setup({
         formatting = {
           fields = { "kind", "abbr", "menu" },
@@ -45,9 +50,9 @@ return {
             end
             vim_item.kind = lspkind.presets.default[vim_item.kind] .. " " .. vim_item.kind
 
-            if entry.source.name == "copilot" then
+            if entry.source.name == "cody" then
               vim_item.kind = icons.git.Octoface
-              vim_item.kind_hl_group = "CmpItemKindCopilot"
+              vim_item.kind_hl_group = "CmpItemKindCody"
             end
 
             if entry.source.name == "crates" then
@@ -60,6 +65,7 @@ return {
               vim_item.kind_hl_group = "CmpItemKindEmoji"
             end
             vim_item.menu = ({
+              cody = "(Cody)",
               nvim_lsp = "(LSP)",
               emoji = "(Emoji)",
               path = "(Path)",
@@ -68,7 +74,6 @@ return {
               luasnip = "(Snippet)",
               buffer = "(Buffer)",
               tmux = "(TMUX)",
-              copilot = "(Copilot)",
               treesitter = "(TreeSitter)",
             })[entry.source.name]
             vim_item.dup = ({
@@ -94,36 +99,9 @@ return {
           }),
         },
         sources = {
-          {
-            name = "copilot",
-            -- keyword_length = 0,
-            max_item_count = 3,
-            trigger_characters = {
-              {
-                ".",
-                ":",
-                "(",
-                "'",
-                '"',
-                "[",
-                ",",
-                "#",
-                "*",
-                "@",
-                "|",
-                "=",
-                "-",
-                "{",
-                "/",
-                "\\",
-                "+",
-                "?",
-                " ",
-                -- "\t",
-                -- "\n",
-              },
-            },
-          },
+          -- {
+          --   name = "cody"
+          -- },
           {
             name = "nvim_lsp",
             entry_filter = function(entry, ctx)
@@ -152,7 +130,14 @@ return {
           ['<Tab>'] = cmp_action.luasnip_supertab(),
           ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
           ["<C-Space>"] = cmp_mapping.complete(),
-          ['<CR>'] = cmp.mapping.confirm({ select = false }),
+          ['<CR>'] = cmp.mapping.confirm(),
+          ['<c-a>'] = cmp.mapping.complete {
+            config = {
+              sources = {
+                { name = "cody" },
+              }
+            }
+          }
         }
       })
     end
@@ -174,23 +159,52 @@ return {
 
       lsp_zero.on_attach(function(_, bufnr)
         lsp_zero.default_keymaps({ buffer = bufnr })
-        local opts = { buffer = bufnr, silent = true }
 
-        vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-        vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-        vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
-        vim.keymap.set('n', 'gi', ':Telescope lsp_implementations<cr>', opts)
-        vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
-        vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>', { buffer = bufnr })
-        -- vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
-        vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-        vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-        vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
-        vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+        -- In this case, we create a function that lets us more easily define mappings specific
+        -- for LSP related items. It sets the mode, buffer and description for us each time.
+        local map = function(keys, func, desc)
+          vim.keymap.set('n', keys, func, { buffer = bufnr, silent = true, desc = 'LSP: ' .. desc })
+        end
 
-        vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
-        vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>', opts)
-        vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>', opts)
+        -- Jump to the definition of the word under your cursor.
+        --  This is where a variable was first declared, or where a function is defined, etc.
+        --  To jump back, press <C-T>.
+        map('gd', require('telescope.builtin').lsp_definitions, 'Goto Definition')
+
+        -- Find references for the word under your cursor.
+        map('gr', require('telescope.builtin').lsp_references, 'Goto References')
+
+        -- Jump to the implementation of the word under your cursor.
+        --  Useful when your language has ways of declaring types without an actual implementation.
+        map('gI', require('telescope.builtin').lsp_implementations, 'Goto Implementation')
+
+        -- Jump to the type of the word under your cursor.
+        --  Useful when you're not sure what type a variable is and you want to see
+        --  the definition of its *type*, not where it was *defined*.
+        map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type Definition')
+
+        -- Fuzzy find all the symbols in your current document.
+        --  Symbols are things like variables, functions, types, etc.
+        map('<leader>ds', require('telescope.builtin').lsp_document_symbols, 'Document Symbols')
+
+        -- Fuzzy find all the symbols in your current workspace
+        --  Similar to document symbols, except searches over your whole project.
+        map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace Symbols')
+
+        -- Rename the variable under your cursor
+        --  Most Language Servers support renaming across files, etc.
+        map('<leader>rn', vim.lsp.buf.rename, 'Rename')
+
+        -- Execute a code action, usually your cursor needs to be on top of an error
+        -- or a suggestion from your LSP for this to activate.
+        map('<leader>ca', vim.lsp.buf.code_action, 'Code Action')
+
+        -- Opens a popup that displays documentation about the word under your cursor
+        map('<leader>k', vim.lsp.buf.hover, 'Hover Documentation')
+
+        -- WARN: This is not Goto Definition, this is Goto Declaration.
+        --  For example, in C this would take you to the header
+        map('gD', vim.lsp.buf.declaration, 'Goto Declaration')
       end)
 
 
@@ -199,14 +213,28 @@ return {
       require('mason').setup({})
       require('mason-lspconfig').setup({
         ensure_installed = {
-          'tsserver',
-          'eslint',
-          'rust_analyzer',
-          'gopls',
-          'lua_ls',
-          'jsonls',
-          'bashls',
-          'vimls',
+          "bashls",
+          -- clangd
+          -- eslint-lsp
+          -- gofumpt
+          -- goimports
+          "gopls",
+          -- helm-ls
+          "jsonls",
+          "lua_ls",
+          -- markdownlint-cli2
+          -- marksman
+          -- pyright
+          -- python-lsp-server
+          -- robotframework-lsp
+          -- ruff
+          -- ruff-lsp
+          "rust_analyzer",
+          -- typescript-language-server
+          "vimls",
+          -- yamlfmt
+          -- yamllint
+          -- yq
         },
         handlers = {
           lsp_zero.default_setup,
@@ -319,6 +347,17 @@ return {
           lspconfig.robotframework_ls.setup({
             pythonpath = "/home/koinworks/.pyenv/shims/python"
           }),
+
+          lspconfig.helm_ls.setup {
+            settings = {
+              ['helm-ls'] = {
+                yamlls = {
+                  path = "yaml-language-server",
+                }
+              }
+            }
+          },
+
         },
       })
 
