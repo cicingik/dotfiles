@@ -1,8 +1,3 @@
-vim.cmd([[
-set completeopt=menuone,noinsert,noselect
-highlight! default link CmpItemKind CmpItemMenuDefault
-]])
-
 return {
   {
     'VonHeikemen/lsp-zero.nvim',
@@ -253,12 +248,6 @@ return {
               },
             },
           }),
-          lspconfig.solidity.setup({
-            cmd = { "nomicfoundation-solidity-language-server", "--stdio" },
-            filetypes = { "solidity", "sol" },
-            root_dir = require("lspconfig.util").find_git_ancestor,
-            single_file_support = true,
-          }),
 
           lspconfig.jsonls.setup({
             settings = {
@@ -268,7 +257,6 @@ return {
               }
             }
           }),
-
 
           lspconfig.rust_analyzer.setup({
             settings = {
@@ -369,7 +357,6 @@ return {
         servers = {
           ['lua_ls'] = { 'lua' },
           ['rust_analyzer'] = { 'rust' },
-          ['tsserver'] = { 'javascript', 'typescript' },
           ['gopls'] = { 'go' },
         }
       })
@@ -379,26 +366,10 @@ return {
       })
 
       lsp_zero.set_sign_icons({
-        error = "E",
-        warn = "W",
-        hint = "H",
-        info = "I",
-      })
-
-      vim.diagnostic.config({
-        title            = false,
-        underline        = true,
-        virtual_text     = true,
-        signs            = true,
-        update_in_insert = false,
-        severity_sort    = true,
-        float            = {
-          source = "always",
-          style = "minimal",
-          border = "rounded",
-          header = "",
-          prefix = "",
-        },
+        hint = '',
+        info = '',
+        warning = '',
+        error = ''
       })
     end
   }

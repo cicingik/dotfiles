@@ -10,12 +10,38 @@ return {
     "nvim-tree/nvim-web-devicons",
     "MunifTanjim/nui.nvim",
   },
-  event = "VeryLazy",
+  -- event = "VeryLazy",
   keys = {
     { "<leader>e",     ":Neotree toggle float<CR>", silent = true, desc = "Float File Explorer" },
     { "<leader><tab>", ":Neotree toggle left<CR>",  silent = true, desc = "Left File Explorer" },
   },
   config = function()
+    vim.fn.sign_define({
+      {
+        name = 'DiagnosticSignError',
+        text = '',
+        texthl = 'DiagnosticSignError',
+        linehl = 'ErrorLine',
+      },
+      {
+        name = 'DiagnosticSignWarn',
+        text = '',
+        texthl = 'DiagnosticSignWarn',
+        linehl = 'WarningLine',
+      },
+      {
+        name = 'DiagnosticSignInfo',
+        text = '',
+        texthl = 'DiagnosticSignInfo',
+        linehl = 'InfoLine',
+      },
+      {
+        name = 'DiagnosticSignHint',
+        text = '',
+        texthl = 'DiagnosticSignHint',
+        linehl = 'HintLine',
+      },
+    })
     require("neo-tree").setup({
       close_if_last_window = true,
       popup_border_style = "single",
@@ -24,6 +50,20 @@ return {
       enable_diagnostics = true,
       sort_case_insensitive = true,
       default_component_configs = {
+        diagnostics = {
+          symbols = {
+            hint = '',
+            info = '',
+            warning = '',
+            error = ''
+          },
+          highlights = {
+            hint = "DiagnosticSignHint",
+            info = "DiagnosticSignInfo",
+            warn = "DiagnosticSignWarn",
+            error = "DiagnosticSignError",
+          },
+        },
         indent = {
           with_markers = false,
           with_expanders = true,

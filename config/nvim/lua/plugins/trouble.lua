@@ -1,7 +1,6 @@
 return {
   "folke/trouble.nvim",
   cmd = { "TroubleToggle", "Trouble" },
-  opts = { use_diagnostic_signs = true },
   lazy = true,
   config = function()
     require("trouble").setup {
@@ -29,7 +28,15 @@ return {
         toggle_fold = { "za" },     -- toggle fold of current file
       },
       auto_jump = {},
-      use_diagnostic_signs = true,
+      use_diagnostic_signs = false,
+      signs = {
+        -- icons / text used for a diagnostic
+        error = "",
+        warning = "",
+        hint = "",
+        information = "",
+        other = "",
+      },
     }
   end
 }
