@@ -1,10 +1,10 @@
 return {
   mode = { "n", "v" },
+
   w = { "<cmd>w!<cr>", "Save" },
   q = { "<cmd>confirm q<cr>", "Quit" },
   c = { "<cmd>bd<cr>", "Close Buffer" },
-  o = { "<cmd>Telescope buffers<cr>", "Open Buffer" },
-  e = { "<cmd>NvimTreeToggle<cr>", "File Explorer" },
+  p = { "<cmd>Telescope buffers<cr>", "Buffer Open" },
   m = { "<cmd>MarkdownPreview<cr>", "Open markdown in web browser" },
   j = { "<cmd>HopWord<cr>", "Go to any word in the current buffer" },
   l = { "<cmd>AerialToggle!<cr>", "Areal Toggle" },
@@ -16,7 +16,6 @@ return {
   mr = { "<cmd>CellularAutomaton make_it_rain<cr>", "Make it rain" },
   ["<C-q>"] = { "<cmd>Telescope Quickfix<cr>", "Quickfix" },
 
-
   s = {
     name = "Search",
     h = { "<cmd>Telescope help_tags<cr>", "Search Help" },
@@ -25,10 +24,10 @@ return {
     s = { "<cmd>Telescope builtin<cr>", "Search Select Telescope" },
     w = { "<cmd>Telescope grep_string<cr>", "Select Current Word" },
     g = { "<cmd>Telescope live_grep<cr>", "Search by Grep" },
-    d = { "<cmd>Telescope diagnostics<cr>", "Search Diagnostics" },
+    x = { "<cmd>Telescope diagnostics<cr>", "Search Diagnostics" },
     r = { "<cmd>Telescope resume<cr>", "Search Resume" },
     o = { "<cmd>Telescope oldfiles<cr>", "Search Recent Files ('.' for repeat)" },
-    t = { "<cmd>TodoTelescope<cr>", "Todo Lists" }
+    t = { "<cmd>TodoTelescope<cr>", "Todo Lists" },
   },
 
   g = {
@@ -39,19 +38,36 @@ return {
     l = { "<cmd>lua require 'gitsigns'.next_hunk({navigation_message = false})<cr>", "Next Hunk" },
   },
 
-  p = {
+  v = {
     name = "Python Virtualenv",
     v = { "<cmd>VenvSelect<cr>", "Venv Selector" },
     c = { "<cmd>VenvSelectCached<cr>", "Retrieve the venv from a cache" },
   },
 
   d = {
-    name = "DAP",
+    name = "Debug",
+    u = { "<cmd>lua require'dapui'.toggle()<cr>", "UI" },
     c = { "<cmd>Telescope dap commands<cr>", "Dap Commands" },
-    b = { "<cmd>Telescope dap list_breakpoints<cr>", "Dap Breakpoints" },
+    B = { "<cmd>Telescope dap list_breakpoints<cr>", "Dap Breakpoints" },
+    b = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Breakpoint" },
     g = { "<cmd>Telescope dap configurations<cr>", "Dap Configurations" },
-    v = { "<cmd>Telescope dap variables<cr>", "Dap Variables" },
-    f = { "<cmd>Telescope dap frames<cr>", "Dap Frames" },
+    S = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
+    i = { "<cmd>lua require'dap'.step_into()<cr>", "Into" },
+    o = { "<cmd>lua require'dap'.step_over()<cr>", "Over" },
+    O = { "<cmd>lua require'dap'.step_out()<cr>", "Out" },
+    r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Repl" },
+    l = { "<cmd>lua require'dap'.run_last()<cr>", "Last" },
+    x = { "<cmd>lua require'dap'.terminate()<cr>", "Exit" },
+  },
+
+  o = {
+    name = "Obsidian",
+    w = { "<cmd>ObsidianWorkspace<cr>", "Workspaces" },
+    n = { "<cmd>ObsidianNew<cr>", "New Page" },
+    d = { "<cmd>ObsidianToday<cr>", "Daily Note" },
+    s = { "<cmd>ObsidianSearch<cr>", "Search" },
+    t = { "<cmd>ObsidianTemplate<cr>", "Template" },
+    x = { "<cmd>ObsidianTags<cr>", "Search by Tag" },
   },
 
   ['\\'] = {

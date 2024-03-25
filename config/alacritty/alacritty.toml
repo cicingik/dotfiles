@@ -9,7 +9,7 @@ program = "/usr/bin/zsh"
 
 [window]
 dynamic_padding = false
-opacity = 0.80
+opacity = 0.85
 startup_mode = "Fullscreen"
 
 [font]
@@ -18,37 +18,6 @@ size = 10.0
 [font.normal]
 family = "JetBrainsMono Nerd Font Mono"
 style = "Regular"
-
-[colors]
-draw_bold_text_with_bright_colors = true
-indexed_colors = [
-    { color = "#FAB387", index = 16 },
-    { color = "#F5E0DC", index = 17 },
-]
-
-[colors.bright]
-black = "#598489"
-blue = "#009AFB"
-cyan = "#5FFFFF"
-green = "#00FF9A"
-magenta = "#FF578F"
-red = "#E65029"
-white = "#D9FBFF"
-yellow = "#E89440"
-
-[colors.normal]
-black = "#6A787A"
-blue = "#44AAE6"
-cyan = "#3DD5E7"
-green = "#39E9A8"
-magenta = "#E17599"
-red = "#E9653B"
-white = "#C3DDE1"
-yellow = "#E5B684"
-
-[colors.primary]
-background = "#1E1E1E"
-foreground = "#CCCCCC"
 
 [cursor]
 style = { shape = "Underline", blinking = "On" }
@@ -60,3 +29,41 @@ history = 5000
 
 [mouse]
 hide_when_typing = true
+
+## Based on kanawaga theme
+
+[colors]
+draw_bold_text_with_bright_colors = true
+indexed_colors = [
+    { color = "0xffa066", index = 16 },
+    { color = "0xff5d62", index = 17 },
+]
+
+[colors.bright]
+black = '0x727169'
+red = '0xae1b1b' # '0xe82424'
+green = '0x98bb6c'
+yellow ='0xe6c384'
+blue = '0x7fb4ca'
+magenta = '0x938aa9'
+cyan = '0x7aa89f'
+white = '0xdcd7ba'
+
+[colors.normal]
+black = '0x090618'
+red = '0xae1b1b' # '0xc34043'
+green = '0x76946a'
+yellow = '0xc0a36e'
+blue = '0x7e9cd8'
+magenta = '0x957fb8'
+cyan = '0x6a9589'
+white = '0xc8c093'
+
+[colors.primary]
+background = '0x1f1f28'
+foreground = '0xdcd7ba'
+
+[colors.selection]
+background = '0x2d4f67'
+foreground = '0xc8c093'
+

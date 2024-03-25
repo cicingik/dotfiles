@@ -90,7 +90,6 @@ return {
             ignored = "",
             unstaged = "",
             staged = "",
-
           },
         },
       },

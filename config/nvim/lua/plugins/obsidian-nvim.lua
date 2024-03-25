@@ -1,7 +1,7 @@
 return {
   "epwalsh/obsidian.nvim",
   version = "*", -- recommended, use latest release instead of latest commit
-  lazy = true,
+  lazy = false,
   ft = "markdown",
   -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
   -- event = {
@@ -20,22 +20,22 @@ return {
     workspaces = {
       {
         name = "works",
-        path = "~/development/amygdala/works",
+        path = "~/development/amygdala/cerebrum",
       },
       {
         name = "personal",
-        path = "~/development/amygdala/personal",
+        path = "~/development/amygdala/cerebellum",
       },
+    },
+
+    picker = {
+      name = "telescope.nvim"
     },
 
     -- see below for full list of options 👇
     -- Alternatively - and for backwards compatibility - you can set 'dir' to a single path instead of
     -- 'workspaces'. For example:
     -- dir = "~/vaults/work",
-
-    -- Optional, set to true to use the current directory as a vault; otherwise
-    -- the first workspace is opened by default.
-    detect_cwd = false,
 
     -- Optional, if you keep notes in a specific subdirectory of your vault.
     notes_subdir = "notes",
@@ -46,7 +46,7 @@ return {
 
     daily_notes = {
       -- Optional, if you keep daily notes in a separate directory.
-      folder = "~/development/amygdala/personal/daily",
+      folder = "dailies",
       -- Optional, if you want to change the date format for the ID of daily notes.
       date_format = "%Y-%m-%d",
       -- Optional, if you want to change the date format of the default alias of daily notes.
@@ -63,26 +63,12 @@ return {
       -- Trigger completion at 2 chars.
       min_chars = 2,
 
-      -- Where to put new notes created from completion. Valid options are
-      --  * "current_dir" - put new notes in same directory as the current buffer.
-      --  * "notes_subdir" - put new notes in the default notes subdirectory.
-      new_notes_location = "current_dir",
-
-      -- Control how wiki links are completed with these (mutually exclusive) options:
-      --
-      -- 1. Whether to add the note ID during completion.
-      -- E.g. "[[Foo" completes to "[[foo|Foo]]" assuming "foo" is the ID of the note.
-      -- Mutually exclusive with 'prepend_note_path' and 'use_path_only'.
-      prepend_note_id = true,
-      -- 2. Whether to add the note path during completion.
-      -- E.g. "[[Foo" completes to "[[notes/foo|Foo]]" assuming "notes/foo.md" is the path of the note.
-      -- Mutually exclusive with 'prepend_note_id' and 'use_path_only'.
-      prepend_note_path = false,
-      -- 3. Whether to only use paths during completion.
-      -- E.g. "[[Foo" completes to "[[notes/foo]]" assuming "notes/foo.md" is the path of the note.
-      -- Mutually exclusive with 'prepend_note_id' and 'prepend_note_path'.
-      use_path_only = false,
     },
+
+    -- Where to put new notes created from completion. Valid options are
+    --  * "current_dir" - put new notes in same directory as the current buffer.
+    --  * "notes_subdir" - put new notes in the default notes subdirectory.
+    new_notes_location = "notes_subdir",
 
     -- Optional, configure key mappings. These are the defaults. If you don't want to set any keymappings this
     -- way then set 'mappings = {}'.
@@ -149,12 +135,12 @@ return {
     -- },
 
     -- Optional, customize the backlinks interface.
-    backlinks = {
-      -- The default height of the backlinks pane.
-      height = 10,
-      -- Whether or not to wrap lines.
-      wrap = true,
-    },
+    -- backlinks = {
+    --   -- The default height of the backlinks pane.
+    --   height = 10,
+    --   -- Whether or not to wrap lines.
+    --   wrap = true,
+    -- },
 
     -- Optional, by default when you use `:ObsidianFollowLink` on a link to an external
     -- URL it will be ignored but you can customize this behavior here.
@@ -192,7 +178,7 @@ return {
     -- Optional, configure additional syntax highlighting / extmarks.
     -- This requires you have `conceallevel` set to 1 or 2. See `:help conceallevel` for more details.
     ui = {
-      enable = true,         -- set to false to disable all additional syntax features
+      enable = false,        -- set to false to disable all additional syntax features
       update_debounce = 200, -- update delay after a text change (in milliseconds)
       -- Define how various check-boxes are displayed
       checkboxes = {

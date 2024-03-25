@@ -70,6 +70,8 @@ vim.g.lazygit_config_file_path = '' -- custom config file path
 
 vim.g.indent_blankline_show_current_context = true
 
+vim.g.go_fmt_command = "gofmt"
+
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
