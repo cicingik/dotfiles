@@ -4,7 +4,6 @@ return {
   w = { "<cmd>w!<cr>", "Save" },
   q = { "<cmd>confirm q<cr>", "Quit" },
   c = { "<cmd>bd<cr>", "Close Buffer" },
-  p = { "<cmd>Telescope buffers<cr>", "Buffer Open" },
   m = { "<cmd>MarkdownPreview<cr>", "Open markdown in web browser" },
   j = { "<cmd>HopWord<cr>", "Go to any word in the current buffer" },
   l = { "<cmd>AerialToggle!<cr>", "Areal Toggle" },
@@ -14,7 +13,8 @@ return {
   Z = { "<cmd>ZenMode<cr>", "Zen Mode" },
 
   mr = { "<cmd>CellularAutomaton make_it_rain<cr>", "Make it rain" },
-  ["<C-q>"] = { "<cmd>Telescope Quickfix<cr>", "Quickfix" },
+  ["<C-q>"] = { "<cmd>Telescope quickfix<cr>", "Quickfix" },
+  ["<leader>"] = { "<cmd>Telescope buffers<cr>", "Buffer Open" },
 
   s = {
     name = "Search",
@@ -38,9 +38,9 @@ return {
     l = { "<cmd>lua require 'gitsigns'.next_hunk({navigation_message = false})<cr>", "Next Hunk" },
   },
 
-  v = {
+  p = {
     name = "Python Virtualenv",
-    v = { "<cmd>VenvSelect<cr>", "Venv Selector" },
+    s = { "<cmd>VenvSelect<cr>", "Venv Selector" },
     c = { "<cmd>VenvSelectCached<cr>", "Retrieve the venv from a cache" },
   },
 
@@ -51,7 +51,7 @@ return {
     B = { "<cmd>Telescope dap list_breakpoints<cr>", "Dap Breakpoints" },
     b = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Breakpoint" },
     g = { "<cmd>Telescope dap configurations<cr>", "Dap Configurations" },
-    S = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
+    s = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
     i = { "<cmd>lua require'dap'.step_into()<cr>", "Into" },
     o = { "<cmd>lua require'dap'.step_over()<cr>", "Over" },
     O = { "<cmd>lua require'dap'.step_out()<cr>", "Out" },
@@ -62,16 +62,28 @@ return {
 
   o = {
     name = "Obsidian",
-    w = { "<cmd>ObsidianWorkspace<cr>", "Workspaces" },
+    s = { "<cmd>ObsidianWorkspace<cr>", "Workspaces" },
+    p = { "<cmd>ObsidianWorkspace personal<cr>", "Personal Workspaces" },
+    w = { "<cmd>ObsidianWorkspace works<cr>", "Working Workspaces" },
     n = { "<cmd>ObsidianNew<cr>", "New Page" },
     d = { "<cmd>ObsidianToday<cr>", "Daily Note" },
-    s = { "<cmd>ObsidianSearch<cr>", "Search" },
+    g = { "<cmd>ObsidianSearch<cr>", "Search" },
     t = { "<cmd>ObsidianTemplate<cr>", "Template" },
-    x = { "<cmd>ObsidianTags<cr>", "Search by Tag" },
+    a = { "<cmd>ObsidianTags<cr>", "Search by Tag" },
+    f = { "<cmd>ObsidianQuickSwitch<cr>", "Browse Files" },
+    c = { "<cmd>ObsidianToggleCheckbox<cr>", "Checkbox" }
+  },
+
+  a = {
+    name = "Assistant",
+    a = { ":<c-u>lua require('ollama').prompt()<cr>", "Assistant Prompt" },
+    q = { ":<c-u>lua require('ollama').prompt('Raw')<cr>", "Asking" },
+    g = { ":<c-u>lua require('ollama').prompt('Generate_Code')<cr>", "Generate Code" }
   },
 
   ['\\'] = {
     name = "Terminal",
+    f = { "<cmd>ToggleTerm<cr>", "Float" },
     h = { "<cmd>ToggleTerm direction=horizontal<cr>", "Horizontal" },
     v = { "<cmd>ToggleTerm direction=vertical size=100 <cr>", "Vertical" },
   },

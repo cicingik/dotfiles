@@ -4,7 +4,7 @@ local options = {
   clipboard = "unnamedplus",               -- allows neovim to access the system clipboard
   cmdheight = 1,                           -- more space in the neovim command line for displaying messages
   completeopt = { "menuone", "noselect" }, -- mostly just for cmp
-  conceallevel = 0,                        -- so that `` is visible in markdown files
+  conceallevel = 2,                        -- so that `` is visible in markdown files
   encoding = 'utf-8',
   fileencoding = "utf-8",                  -- the encoding written to a file
   hlsearch = true,                         -- highlight all matches on previous search pattern
@@ -75,6 +75,16 @@ vim.g.go_fmt_command = "gofmt"
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
+
+-- if a file is a .env or .envrc file, set the filetype to sh
+vim.filetype.add({
+  filename = {
+    [".env"] = "sh",
+    [".envrc"] = "sh",
+    ["*.env"] = "sh",
+    ["*.envrc"] = "sh"
+  }
+})
 
 vim.cmd([[ set nofoldenable]])
 

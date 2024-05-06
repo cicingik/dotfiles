@@ -152,12 +152,13 @@ case ":${PATH}:" in
         ;;
 esac
 
-alias code=nvim
+alias ide=nvim
 alias c=clear
 alias gops="$HOME/.gvm/pkgsets/go1.19/global/bin/gops"
 alias pc=podman-compose
 alias base="tmux a -t base || tmux new -s base"
 alias docker=podman
+alias dev="cd $HOME/development"
 
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
@@ -165,3 +166,11 @@ alias docker=podman
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# zvm
+export ZVM_INSTALL="$HOME/.zvm/self"
+export PATH="$PATH:$HOME/.zvm/bin"
+export PATH="$PATH:$ZVM_INSTALL/"
+
+# autoload -U +X bashcompinit && bashcompinit
+# complete -o nospace -C /usr/bin/terraform terraform
