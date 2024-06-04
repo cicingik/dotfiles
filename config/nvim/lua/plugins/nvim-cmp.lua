@@ -91,7 +91,21 @@ local ls_config = function()
         impacted = ls.i(2, ""),
         improv = ls.i(3, ""),
         expected = ls.i(4, ""),
-      }))
+      })),
+
+    s("pyhead",
+      fmt(
+        [[
+      #!/usr/bin/env python3
+      # -*- coding: utf-8 -*-
+      """
+
+      Author: cicingik
+      Copyright (C) 2024
+      """
+        ]], {}
+      )
+    )
 
   })
 end

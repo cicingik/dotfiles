@@ -15,10 +15,11 @@ config.font_size = 10
 config.adjust_window_size_when_changing_font_size = true
 
 config.window_background_image = '/home/koinworks/Pictures/Wallpapers/GL06TnhbUAAQ4CU.jpeg'
+-- config.window_background_image = '/home/koinworks/Pictures/Wallpapers/F0LkzpPacAEL-6W.jpeg'
 config.window_background_opacity = 1.0
 config.window_background_image_hsb = {
   -- Darken the background image by reducing it to 1/3rd
-  brightness = 0.02,
+  brightness = 0.04,
   -- You can adjust the hue by scaling its value.
   -- a multiplier of 1.0 leaves the value unchanged.
   hue = 1.0,
@@ -27,9 +28,8 @@ config.window_background_image_hsb = {
 }
 
 config.use_fancy_tab_bar = false
-config.tab_bar_at_bottom = true
+config.tab_bar_at_bottom = false
 
-config.enable_scroll_bar = false
 config.window_padding = {
   left = 0,
   right = 0,
@@ -43,24 +43,7 @@ config.inactive_pane_hsb = {
 
 config.default_cursor_style = "BlinkingBar"
 
-config.colors = {
-  foreground = "#dcd7ba",
-  background = "#1f1f28",
-
-  cursor_bg = "#c8c093",
-  cursor_fg = "#c8c093",
-  cursor_border = "#c8c093",
-
-  selection_fg = "#c8c093",
-  selection_bg = "#2d4f67",
-
-  scrollbar_thumb = "#16161d",
-  split = "#16161d",
-
-  ansi = { "#090618", "#c34043", "#76946a", "#c0a36e", "#7e9cd8", "#957fb8", "#6a9589", "#c8c093" },
-  brights = { "#727169", "#e82424", "#98bb6c", "#e6c384", "#7fb4ca", "#938aa9", "#7aa89f", "#dcd7ba" },
-  indexed = { [16] = "#ffa066", [17] = "#ff5d62" },
-}
+config.color_scheme = 'Kanagawa (Gogh)'
 
 -- timeout_milliseconds defaults to 1000 and can be omitted
 config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
@@ -84,27 +67,79 @@ config.keys = {
 }
 
 wezterm.on("update-right-status", function(window)
-  -- demonstrates shelling out to get some external status.
-  -- wezterm will parse escape sequences output by the
-  -- child process and include them in the status area, too.
-  local _, date, _ = wezterm.run_child_process({ "date" });
+  local cells = {}
 
-  -- However, if all you need is to format the date/time, then:
+  local _, date, _ = wezterm.run_child_process({ "date" });
   date = wezterm.strftime("%a %b %-d %H:%M:%S");
+
+  table.insert(cells, date)
 
   local bat = ''
   for _, b in ipairs(wezterm.battery_info()) do
-    bat = '🔋' .. string.format('%.0f%%', b.state_of_charge * 100)
+    bat = string.format('%.0f%%', b.state_of_charge * 100)
+    table.insert(cells, bat)
   end
 
+  local ctx = 'N/A'
+  local handle = io.popen("kubectl config current-context 2>/dev/null")
+  if handle then
+    ctx = handle:read("*a"):match("^%s*(.-)%s*$")
+    handle:close()
+    table.insert(cells, ctx)
+  end
 
-  -- Make it italic and underlined
-  window:set_right_status(wezterm.format({
-    { Text = bat .. ' | ' .. date .. ' | ' .. "kube_ctx" },
-  }));
+  local namespace = 'N/A'
+  local handle = io.popen("kubectl config view --minify --output 'jsonpath={..namespace}' 2>/dev/null")
+  if handle then
+    namespace = handle:read("*a"):match("^%s*(.-)%s*$")
+    handle:close()
+    table.insert(cells, namespace)
+  end
+
+  -- The powerline < symbol
+  local LEFT_ARROW = utf8.char(0xe0b3)
+  -- The filled in variant of the < symbol
+  local SOLID_LEFT_ARROW = utf8.char(0xe0b2)
+
+  -- Color palette for the backgrounds of each cell
+  local colors = {
+    '#5b5a54',
+    '#44433f',
+    '#2d2d2a',
+    '#161615',
+    '#0b0b0a'
+  }
+
+  -- Foreground color for the text across the fade
+  local text_fg = '#c0c0c0'
+
+  -- The elements to be formatted
+  local elements = {}
+  -- How many cells have been formatted
+  local num_cells = 0
+
+  -- Translate a cell into elements
+  function push(text, is_last)
+    local cell_no = num_cells + 1
+    table.insert(elements, { Foreground = { Color = text_fg } })
+    table.insert(elements, { Background = { Color = colors[cell_no] } })
+    table.insert(elements, { Text = ' ' .. text .. ' ' })
+    if not is_last then
+      table.insert(elements, { Foreground = { Color = colors[cell_no + 1] } })
+      table.insert(elements, { Text = SOLID_LEFT_ARROW })
+    end
+    num_cells = num_cells + 1
+  end
+
+  while #cells > 0 do
+    local cell = table.remove(cells, 1)
+    push(cell, #cells == 0)
+  end
+
+  window:set_right_status(wezterm.format(elements))
 end);
 
--- NOTE: most use command from default keybind
+-- NOTE: most use command from default keybindI have
 -- CTRL + tab             -> next tab
 -- SUPER + t              -> new tab
 -- CTRL + d               -> close pane
