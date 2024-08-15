@@ -101,8 +101,8 @@ return {
           -- markdownlint-cli2
           -- marksman
           -- pyright
-          -- python-lsp-server
-          -- robotframework-lsp
+          "pylsp",
+          "robotframework_ls",
           -- ruff
           -- ruff-lsp
           "rust_analyzer",

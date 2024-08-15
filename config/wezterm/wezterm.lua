@@ -14,8 +14,8 @@ config.font = wezterm.font('JetBrainsMono Nerd Font Mono')
 config.font_size = 10
 config.adjust_window_size_when_changing_font_size = true
 
-config.window_background_image = '/home/koinworks/Pictures/Wallpapers/GL06TnhbUAAQ4CU.jpeg'
--- config.window_background_image = '/home/koinworks/Pictures/Wallpapers/F0LkzpPacAEL-6W.jpeg'
+-- config.window_background_image = '/home/koinworks/Pictures/Wallpapers/GL06TnhbUAAQ4CU.jpeg'
+config.window_background_image = '/home/koinworks/Pictures/Wallpapers/F0LkzpPacAEL-6W.jpeg'
 config.window_background_opacity = 1.0
 config.window_background_image_hsb = {
   -- Darken the background image by reducing it to 1/3rd
