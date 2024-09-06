@@ -23,9 +23,9 @@ local options = {
   undofile = true,                         -- enable persistent undo
   updatetime = 100,                        -- faster completion (4000ms default)
   writebackup = false,                     -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
-  expandtab = true,                        -- convert tabs to spaces
-  shiftwidth = 2,                          -- the number of spaces inserted for each indentation
-  tabstop = 2,                             -- insert 2 spaces for a tab
+  expandtab = false,                       -- convert tabs to spaces
+  shiftwidth = 4,                          -- the number of spaces inserted for each indentation
+  tabstop = 4,                             -- insert 2 spaces for a tab
   cursorline = true,                       -- highlight the current line
   number = true,                           -- set numbered lines
   breakindent = true,                      -- wrap lines with indent
@@ -44,9 +44,10 @@ local options = {
   fillchars = { eob = " " },               -- change the character at the end of buffer
   autoread = true,                         -- Automatically re-read files if unmodified inside Vim.
   -- cursorlineopt = "number",                -- set the cursorline
-  softtabstop = 2,
+  softtabstop = 4,
   foldmethod = "expr",
-  foldexpr = "nvim_treesitter#foldexpr()"
+  foldexpr = "nvim_treesitter#foldexpr()",
+  autoindent = true
 }
 
 vim.scriptencoding = 'utf-8'
@@ -57,7 +58,7 @@ vim.g.maplocalleader = ' '
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-vim.g.python3_host_prog = '/home/koinworks/.pyenv/versions/nvim/bin/python'
+vim.g.python3_host_prog = '/Users/mac/.pyenv/shims/python'
 
 vim.g.lazygit_floating_window_winblend = 0 -- transparency of floating window
 vim.g.lazygit_floating_window_scaling_factor = 0.9 -- scaling factor for floating window

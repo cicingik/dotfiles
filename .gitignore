@@ -41,3 +41,6 @@ luac.out
 
 .idea
 .git
+.DS_Store
+
+config/wezterm/wezterm-session-manager/

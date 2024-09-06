@@ -20,11 +20,11 @@ return {
     workspaces = {
       {
         name = "works",
-        path = "~/development/amygdala/cerebrum",
+        path = "~/amygdala/cerebrum",
       },
       {
         name = "personal",
-        path = "~/development/amygdala/cerebellum",
+        path = "~/amygdala/cerebellum",
       },
     },
 
