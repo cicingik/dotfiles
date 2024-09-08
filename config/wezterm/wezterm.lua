@@ -52,17 +52,16 @@ config.window_padding = {
 	bottom = 0,
 }
 config.inactive_pane_hsb = {
-	saturation = 0.9,
-	brightness = 0.5,
+	saturation = 0.8,
+	brightness = 0.7,
 }
 
+config.default_gui_startup_args = { 'connect', 'unix' }
+config.default_workspace = 'development'
 -- Setup muxing by default
 config.unix_domains = {
-	{
-		name = 'unix',
-	},
+	{ name = 'unix' },
 }
-config.default_gui_startup_args = { 'connect', 'unix' }
 
 local handle = io.popen("echo $HOME")
 if handle then
@@ -78,7 +77,7 @@ wezterm.on("update-right-status", function(window)
 	for _, b in ipairs(wezterm.battery_info()) do
 		bat = string.format('%.0f%%', b.state_of_charge * 100)
 		if b.state == 'Charging' then
-			bat = '' .. " " .. bat
+			bat = '⚡' .. " " .. bat
 		end
 
 		table.insert(cells, bat)
@@ -88,8 +87,8 @@ wezterm.on("update-right-status", function(window)
 	date = wezterm.strftime("%a %b %-d %H:%M:%S");
 	table.insert(cells, date)
 
-	-- local workspace = window:get_title()
-	-- table.insert(cells, '🧪 ' .. workspace)
+	local workspace = window:active_workspace()
+	table.insert(cells, '🧪 ' .. workspace)
 
 	local ctx = 'N/A'
 	local handle_kcs = io.popen("$HOME/bin/kubectl config current-context")

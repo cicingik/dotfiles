@@ -171,4 +171,5 @@ alias c=clear
 alias pc=podman-compose
 alias base="tmux a -t base || tmux new -s base"
 alias dev="cd $HOME/development"
+alias dot="cd $HOME/dotfiles"
 alias brain="nvim $HOME/amygdala/index.md"
