@@ -36,7 +36,7 @@ config.switch_to_last_active_tab_when_closing_tab = true
 
 config.window_background_image_hsb = {
 	-- Darken the background image by reducing it to 1/3rd
-	brightness = 0.05,
+	brightness = 0.08,
 	-- You can adjust the hue by scaling its value.
 	-- a multiplier of 1.0 leaves the value unchanged.
 	hue = 1.0,
@@ -56,12 +56,12 @@ config.inactive_pane_hsb = {
 	brightness = 0.7,
 }
 
-config.default_gui_startup_args = { 'connect', 'unix' }
+-- config.default_gui_startup_args = { 'connect', 'unix' }
 config.default_workspace = 'development'
 -- Setup muxing by default
-config.unix_domains = {
-	{ name = 'unix' },
-}
+-- config.unix_domains = {
+-- 	{ name = 'unix' },
+-- }
 
 local handle = io.popen("echo $HOME")
 if handle then
@@ -127,7 +127,7 @@ wezterm.on("update-right-status", function(window)
 	local num_cells = 0
 
 	-- Translate a cell into elements
-	function push(text, is_last)
+	local function push(text, is_last)
 		local cell_no = num_cells + 1
 		if cell_no == 1 then
 			table.insert(elements, { Foreground = { Color = colors[cell_no] } })
@@ -152,6 +152,7 @@ wezterm.on("update-right-status", function(window)
 	window:set_right_status(wezterm.format(elements))
 end);
 
+config.disable_default_mouse_bindings = false
 config.mouse_bindings = {
 	-- Open URLs with Ctrl+Click
 	{
@@ -207,7 +208,7 @@ config.keys = {
 		action = wezterm.action.PromptInputLine {
 			description = 'Enter new name for session',
 			action = wezterm.action_callback(
-				function(window, pane, line)
+				function(window, _, line)
 					if line then
 						mux.rename_workspace(
 							window:mux_window():get_workspace(),
@@ -238,7 +239,7 @@ config.keys = {
 }
 
 
--- NOTE: most use command from default keybindI have
+-- NOTE: most use command from default keybind that I have
 -- CTRL + tab             -> next tab
 -- SUPER + t              -> new tab
 -- CTRL + d               -> close pane

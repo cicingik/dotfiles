@@ -107,7 +107,7 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export PATH="$PATH:/opt/homebrew/bin"
 export PATH="$PATH:/opt/homebrew/opt/openvpn/sbin"
 export PATH="$PATH:${HOME}/Library/Application Support/JetBrains/Toolbox/scripts"
-
+export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 export NVM_DIR="$HOME/.nvm"

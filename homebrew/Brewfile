@@ -28,3 +28,6 @@ brew "derailed/k9s/k9s"
 brew "duckdb"
 
 cask "dbeaver-community"
+
+tap "hashicorp/tap"
+brew "hashicorp/tap/vault"
