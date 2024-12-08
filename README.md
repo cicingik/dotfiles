@@ -1,9 +1,8 @@
 # Dotfiles
-This is my personal configuration for code in terminal. Including tmux, nvim, omyz, and alacritty.
+This is my personal configuration for code in terminal. Including nvim, zsh, and wezterm.
 
 ## Requirements
 - [ohmyz](https://ohmyz.sh)
-- [tmux](https://github.com/tmux/tmux/wiki/Installing)
 - [neovim 0.8+](https://neovim.io) 
 - [Nerd Font](https://github.com/ryanoasis/nerd-fonts#font-installation)
 - [Lazy Git](https://github.com/jesseduffield/lazygit)
@@ -14,6 +13,13 @@ This is my personal configuration for code in terminal. Including tmux, nvim, om
 
 ### Available Commands
 ```bash
+mkdir ~/personal -p
+cd ~/personal
+git clone https://github.com/cicingik/dotfiles.git
+cd dotfiles
+
+./install.sh help
+
 Usage: ./install.sh <command>
 
 Available commands:
