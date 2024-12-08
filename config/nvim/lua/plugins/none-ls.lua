@@ -33,6 +33,15 @@ return {
         --   end,
         -- }),
         nills.builtins.code_actions.refactoring,
+
+        nills.builtins.diagnostics.mypy,
+        nills.builtins.formatting.isort,
+        nills.builtins.formatting.black,
+        -- nills.builtins.diagnostics.pylint.with({
+        --   diagnostics_postprocess = function(diagnostic)
+        --     diagnostic.code = diagnostic.message_id
+        --   end,
+        -- }),
       },
     })
   end
