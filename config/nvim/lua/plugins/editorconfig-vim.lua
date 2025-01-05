@@ -1,4 +1,4 @@
 return {
-    "editorconfig/editorconfig-vim",
-    lazy = true,
+  "editorconfig/editorconfig-vim",
+  lazy = true,
 }

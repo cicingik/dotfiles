@@ -1,7 +1,7 @@
 return {
-    mode = { "n", "v" },
-    -- w = { "<cmd>w<CR>", "Save" },
-    q = { "<cmd>confirm q<CR>", "Quit" },
-    h = { "<cmd>nohlsearch<CR>", "No Highlight" },
-    ["?"] = { "<cmd>WhichKey<cr>", "Float" },
+  mode = { "n", "v" },
+  -- w = { "<cmd>w<CR>", "Save" },
+  q = { "<cmd>confirm q<CR>", "Quit" },
+  h = { "<cmd>nohlsearch<CR>", "No Highlight" },
+  ["?"] = { "<cmd>WhichKey<cr>", "WhichKey Hint" },
 }
