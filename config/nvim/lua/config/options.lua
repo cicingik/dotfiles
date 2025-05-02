@@ -78,6 +78,7 @@ vim.g.go_addtags_transform = "camelcase"
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 
+vim.g.vsnip_filetypes = {}
 for k, v in pairs(options) do
   vim.opt[k] = v
 end

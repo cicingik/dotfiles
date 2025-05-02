@@ -127,12 +127,14 @@ return {
     { 'saadparwaiz1/cmp_luasnip' },
     {
       'L3MON4D3/LuaSnip',
+      dependencies = { "rafamadriz/friendly-snippets" },
       tag = "v2.2.0",
       config = ls_config,
     },
   },
   config = function()
     require('lsp-zero.cmp').extend()
+    require("luasnip.loaders.from_vscode").lazy_load()
 
     local cmp         = require('cmp')
     local luasnip     = require('luasnip')

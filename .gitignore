@@ -44,3 +44,5 @@ luac.out
 .DS_Store
 
 config/wezterm/wezterm-session-manager/
+config/nvim/node_modules/
+config/nvim/yarn.lock

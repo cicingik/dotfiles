@@ -1,6 +1,6 @@
 return {
   "epwalsh/obsidian.nvim",
-  version = "*",   -- recommended, use latest release instead of latest commit
+  version = "*", -- recommended, use latest release instead of latest commit
   lazy = true,
   ft = "markdown",
   -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
@@ -16,11 +16,18 @@ return {
 
     -- see below for full list of optional dependencies 👇
   },
+  init = function()
+    vim.opt.conceallevel = 2
+  end,
   opts = {
     workspaces = {
+      -- {
+      --   name = "works",
+      --   path = "~/personal/amygdala/cerebrum",
+      -- },
       {
-        name = "works",
-        path = "~/personal/amygdala/cerebrum",
+        name = "koinworks",
+        path = "~/personal/amygdala/cerebrum/koinworks",
       },
       {
         name = "personal",
@@ -48,7 +55,7 @@ return {
       -- Optional, if you keep daily notes in a separate directory.
       folder = "dailies",
       -- Optional, if you want to change the date format for the ID of daily notes.
-      date_format = "%Y-%m-%d",
+      date_format = "%Y-%m/%d",
       -- Optional, if you want to change the date format of the default alias of daily notes.
       alias_format = "%B %-d, %Y",
       -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
@@ -80,13 +87,6 @@ return {
         end,
         opts = { noremap = false, expr = true, buffer = true },
       },
-      -- Toggle check-boxes.
-      ["<leader>ch"] = {
-        action = function()
-          return require("obsidian").util.toggle_checkbox()
-        end,
-        opts = { buffer = true },
-      },
     },
 
     -- Optional, customize how names/IDs for new notes are created.
@@ -114,7 +114,11 @@ return {
     -- Optional, alternatively you can customize the frontmatter data.
     note_frontmatter_func = function(note)
       -- This is equivalent to the default frontmatter function.
-      local out = { id = note.id, aliases = note.aliases, tags = note.tags }
+      local out = {
+        id = note.id,
+        title = note.title,
+        date = tostring(os.date("%B %-d, %Y")),
+      }
       -- `note.metadata` contains any manually added fields in the frontmatter.
       -- So here we just make sure those fields are kept in the frontmatter.
       if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
@@ -126,13 +130,13 @@ return {
     end,
 
     -- Optional, for templates (see below).
-    -- templates = {
-    --   subdir = "templates",
-    --   date_format = "%Y-%m-%d",
-    --   time_format = "%H:%M",
-    --   -- A map for custom variables, the key should be the variable and the value a function
-    --   substitutions = {},
-    -- },
+    templates = {
+      subdir = "~/personal/amygdala/templates",
+      date_format = "%Y-%m-%d",
+      time_format = "%H:%M",
+      -- A map for custom variables, the key should be the variable and the value a function
+      substitutions = {},
+    },
 
     -- Optional, customize the backlinks interface.
     -- backlinks = {
@@ -146,12 +150,12 @@ return {
     -- URL it will be ignored but you can customize this behavior here.
     follow_url_func = function(url)
       -- Open the URL in the default web browser.
-      vim.fn.jobstart({ "open", url })       -- Mac OS
+      vim.fn.jobstart({ "open", url }) -- Mac OS
       -- vim.fn.jobstart({"xdg-open", url})  -- linux
     end,
 
     -- Either 'wiki' or 'markdown'.
-    preferred_link_style = "wiki",
+    preferred_link_style = "markdown",
 
     -- Optional, set to true if you use the Obsidian Advanced URI plugin.
     -- https://github.com/Vinzent03/obsidian-advanced-uri
@@ -181,17 +185,17 @@ return {
     -- Optional, configure additional syntax highlighting / extmarks.
     -- This requires you have `conceallevel` set to 1 or 2. See `:help conceallevel` for more details.
     ui = {
-      enable = true,               -- set to false to disable all additional syntax features
-      update_debounce = 200,       -- update delay after a text change (in milliseconds)
+      enable = true,         -- set to false to disable all additional syntax features
+      update_debounce = 200, -- update delay after a text change (in milliseconds)
       -- Define how various check-boxes are displayed
       checkboxes = {
         -- NOTE: the 'char' value has to be a single character, and the highlight groups are defined below.
         [" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
-        ["x"] = { char = "", hl_group = "ObsidianDone" },
         [">"] = { char = "", hl_group = "ObsidianRightArrow" },
-        ["~"] = { char = "󰰱", hl_group = "ObsidianTilde" },
-        ["!"] = { char = "", hl_group = "ObsidianImportant" },
-        ["-"] = { char = "", hl_group = "ObsidianImportant" },
+        ["x"] = { char = "", hl_group = "ObsidianDone" },
+        ["-"] = { char = "", hl_group = "ObsidianCancel" },
+        -- ["~"] = { char = "󰰱", hl_group = "ObsidianCancel" },
+        -- ["!"] = { char = "", hl_group = "ObsidianImportant" },
       },
       external_link_icon = { char = "", hl_group = "ObsidianExtLinkIcon" },
       -- Replace the above with this if you don't have a patched font:
@@ -202,9 +206,9 @@ return {
       hl_groups = {
         -- The options are passed directly to `vim.api.nvim_set_hl()`. See `:help nvim_set_hl`.
         ObsidianTodo = { bold = true, fg = "#f78c6c" },
-        ObsidianDone = { bold = true, fg = "#89ddff" },
         ObsidianRightArrow = { bold = true, fg = "#f78c6c" },
-        ObsidianTilde = { bold = true, fg = "#ff5370" },
+        ObsidianDone = { bold = true, fg = "#89ddff" },
+        ObsidianCancel = { bold = true, fg = "#ff5370" },
         ObsidianRefText = { underline = true, fg = "#c792ea" },
         ObsidianExtLinkIcon = { fg = "#c792ea" },
         ObsidianTag = { italic = true, fg = "#89ddff" },
@@ -217,7 +221,7 @@ return {
       -- The default folder to place images in via `:ObsidianPasteImg`.
       -- If this is a relative path it will be interpreted as relative to the vault root.
       -- You can always override this per image by passing a full path to the command instead of just a filename.
-      img_folder = "assets/imgs",       -- This is the default
+      img_folder = "assets/imgs", -- This is the default
       -- A function that determines the text to insert in the note when pasting an image.
       -- It takes two arguments, the `obsidian.Client` and a plenary `Path` to the image file.
       -- This is the default implementation.

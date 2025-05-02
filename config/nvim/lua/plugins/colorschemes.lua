@@ -55,16 +55,16 @@ return {
     enabled = true,
     config = function()
       require("kanagawa").setup({
-        compile = false,          -- enable compiling the colorscheme
-        undercurl = true,         -- enable undercurls
+        compile = false,  -- enable compiling the colorscheme
+        undercurl = true, -- enable undercurls
         commentStyle = { italic = true },
         functionStyle = {},
         keywordStyle = { italic = true },
         statementStyle = { bold = true },
         typeStyle = {},
-        transparent = false,           -- do not set background color
-        dimInactive = false,           -- dim inactive window `:h hl-NormalNC`
-        terminalColors = true,         -- define vim.g.terminal_color_{0,17}
+        transparent = false,   -- do not set background color
+        dimInactive = false,   -- dim inactive window `:h hl-NormalNC`
+        terminalColors = true, -- define vim.g.terminal_color_{0,17}
         -- colors = {             -- add/modify theme and palette colors
         --     palette = {},
         --     theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
@@ -103,35 +103,5 @@ return {
       vim.cmd.colorscheme 'kanagawa-wave'
     end
   },
-  "xiyaowong/nvim-transparent",   -- Remove all background colors to make nvim transparent
-  {
-    "RRethy/vim-illuminate",
-    event = { "BufReadPost", "BufNewFile" },
-    opts = { delay = 200 },
-    lazy = true,
-    config = function(_, opts)
-      require("illuminate").configure(opts)
-
-      local function map(key, dir, buffer)
-        vim.keymap.set("n", key, function()
-          require("illuminate")["goto_" .. dir .. "_reference"](false)
-        end, { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference", buffer = buffer })
-      end
-
-      map("]]", "next")
-      map("[[", "prev")
-
-      vim.api.nvim_create_autocmd("FileType", {
-        callback = function()
-          local buffer = vim.api.nvim_get_current_buf()
-          map("]]", "next", buffer)
-          map("[[", "prev", buffer)
-        end,
-      })
-    end,
-    keys = {
-      { "]]", desc = "Next Reference" },
-      { "[[", desc = "Prev Reference" },
-    },
-  },
+  "xiyaowong/nvim-transparent", -- Remove all background colors to make nvim transparent
 }

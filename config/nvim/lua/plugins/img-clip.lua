@@ -6,11 +6,11 @@ return {
     -- or leave it empty to use the default settings
     default = {
       -- file and directory options
-      dir_path = "/Users/mac/amygdala/assets", ---@type string | fun(): string
+      dir_path = "/assets/imgs", ---@type string | fun(): string
       extension = "png", ---@type string | fun(): string
       file_name = "%Y-%m-%d-%H-%M-%S", ---@type string | fun(): string
       use_absolute_path = false, ---@type boolean | fun(): boolean
-      relative_to_current_file = false, ---@type boolean | fun(): boolean
+      relative_to_current_file = true, ---@type boolean | fun(): boolean
 
       -- template options
       template = "$FILE_PATH", ---@type string | fun(context: table): string

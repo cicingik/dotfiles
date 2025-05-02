@@ -15,7 +15,7 @@ wezterm.on("restore_session", function(window) session_manager.restore_state(win
 
 local SOLID_RIGHT_ARROW = wezterm.nerdfonts.pl_right_hard_divider
 local SOLID_LEFT_ARROW = wezterm.nerdfonts.pl_left_hard_divider
-local WALLPAPAER = '/personal/dotfiles/config/wezterm/wallpaper/GZCYVN9acAACfwu.jpeg'
+local WALLPAPAER = '/personal/dotfiles/config/wezterm/wallpaper/Canail_61699.jpg'
 
 -- Color palette for the backgrounds of each cell
 -- ref: https://colorswall.com/palette/228122
@@ -107,7 +107,7 @@ config.switch_to_last_active_tab_when_closing_tab = true
 
 config.window_background_image_hsb = {
   -- Darken the background image
-  brightness = 0.2,
+  brightness = 0.08,
   -- You can adjust the hue by scaling its value.
   -- a multiplier of 1.0 leaves the value unchanged.
   hue = 1.0,
@@ -137,13 +137,13 @@ config.default_workspace = 'development'
 wezterm.on("update-right-status", function(window)
   local cells = {}
 
-  local interval = wezterm.strftime("%S")
-  interval = tonumber(interval)
-  local idx = 0
-  if interval then
-    idx = math.fmod(interval, #motion)
-  end
-  table.insert(cells, motion[idx + 1])
+  -- local interval = wezterm.strftime("%S")
+  -- interval = tonumber(interval)
+  -- local idx = 0
+  -- if interval then
+  --   idx = math.fmod(interval, #motion)
+  -- end
+  -- table.insert(cells, motion[idx + 1])
 
   local bat = ''
   for _, b in ipairs(wezterm.battery_info()) do
