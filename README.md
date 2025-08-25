@@ -1,5 +1,5 @@
 # Dotfiles
-This is my personal configuration for code in terminal. Including nvim, zsh, and wezterm.
+This is my personal configuration for code in terminal. Including wezterm, zsh, nvim and tmux.
 
 ## Requirements
 - [ohmyz](https://ohmyz.sh)
@@ -8,6 +8,8 @@ This is my personal configuration for code in terminal. Including nvim, zsh, and
 - [Lazy Git](https://github.com/jesseduffield/lazygit)
 - [fd](https://github.com/sharkdp/fd)
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
+
+or you can see: [Brewfile](https://github.com/cicingik/dotfiles/blob/main/homebrew/Brewfile).
 
 ## Installation
 
@@ -20,9 +22,16 @@ cd dotfiles
 
 ./install.sh help
 
+Cicingik Dotfiles
+==============================
+
 Usage: ./install.sh <command>
 
 Available commands:
-all   : Setup all dottfile config; overide all existing configuration.
-nvim  : Setup nvim; overide all existing configuration.
+wezterm : Setup wezterm; overide all existing configuration.
+zsh     : Setup zsh; overide all existing configuration.
+nvim    : Setup nvim; overide all existing configuration.
+tmux    : Setup tmux; overide all existing configuration.
+
+NOTE: Old configuration will be back up in directory ~/dotfiles-backup
 ```

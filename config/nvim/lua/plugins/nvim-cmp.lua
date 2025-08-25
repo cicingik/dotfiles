@@ -98,6 +98,20 @@ local ls_config = function()
         improv = ls.i(3, ""),
         expected = ls.i(4, ""),
       })),
+
+    s("erd",
+      fmt(
+        [[
+      ```mermaid
+      erDiagram
+      {start}
+      ```
+        ]], {
+          start = ls.i(1, ""),
+        }
+      )
+    )
+
   })
 
   ls.add_snippets("python", {
@@ -109,7 +123,7 @@ local ls_config = function()
       """
 
       Author: cicingik
-      Copyright (C) 2024
+      Copyright (C) 2025
       """
         ]], {}
       )

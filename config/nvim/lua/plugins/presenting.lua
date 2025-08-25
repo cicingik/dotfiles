@@ -51,7 +51,7 @@ return {
           -- block_quotes = {},
           -- callbacks = {},
           checkboxes = {
-            enable = false,
+            enable = true,
           },
           -- code_blocks = {},
           -- escaped = {},
@@ -81,7 +81,7 @@ return {
           },
           markdown = {
             list_items = {
-              enable = false,
+              enable = true,
               wrap = false,
 
               marker_minus = {

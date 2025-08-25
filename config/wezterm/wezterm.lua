@@ -12,10 +12,10 @@ wezterm.on("restore_session", function(window) session_manager.restore_state(win
 -- SUPER + t              -> new tab
 -- CTRL + d               -> close pane
 -- CTRL + SHIFT + Arrow   -> navigate panes
-
 local SOLID_RIGHT_ARROW = wezterm.nerdfonts.pl_right_hard_divider
 local SOLID_LEFT_ARROW = wezterm.nerdfonts.pl_left_hard_divider
-local WALLPAPAER = '/personal/dotfiles/config/wezterm/wallpaper/Canail_61699.jpg'
+
+local CURRENTS_WALLPAPER = '/personal/dotfiles/config/wezterm/wallpaper/GLrUaxgbgAAG5Ic.jpeg'
 
 -- Color palette for the backgrounds of each cell
 -- ref: https://colorswall.com/palette/228122
@@ -45,8 +45,8 @@ local motion = { '🌕', '🌖', '🌗', '🌘', '🌑', '🌒', '🌓', '🌔' 
 
 local config = {}
 -- Foreground color for the text across the fade
-local text_fg = white
-local colors = bw_pallete
+local text_fg = black
+local colors = kanagawa_wave_pallete
 
 -- In newer versions of wezterm, use the config_builder which will
 -- help provide clearer error messages
@@ -58,7 +58,7 @@ local handle = io.popen("echo $HOME")
 if handle then
   local home = handle:read("*a"):match("^%s*(.-)%s*$")
   handle:close()
-  config.window_background_image = home .. WALLPAPAER
+  config.window_background_image = home .. CURRENTS_WALLPAPER
 end
 
 config.adjust_window_size_when_changing_font_size = true
@@ -107,7 +107,7 @@ config.switch_to_last_active_tab_when_closing_tab = true
 
 config.window_background_image_hsb = {
   -- Darken the background image
-  brightness = 0.08,
+  brightness = 0.2,
   -- You can adjust the hue by scaling its value.
   -- a multiplier of 1.0 leaves the value unchanged.
   hue = 1.0,
