@@ -43,7 +43,7 @@ setup_zsh() {
     mkdir -p "$BACKUP_DIR"
 
     info "Copy custom theme"
-    cp "$DOTFILES/zsh/cicingik/zsh.theme" "$HOME/.oh-my-zsh/themes/zsh.theme"
+    cp "$DOTFILES/zsh/cicingik.zsh.theme" "$HOME/.oh-my-zsh/themes/zsh.theme"
 
     for file in $(find -H "$DOTFILES/zsh" -maxdepth 3 -name '*.symlink'); do
         filename=".$(basename "$file" '.symlink')"
@@ -60,10 +60,13 @@ setup_zsh() {
             ln -f -s "$file" "$target"
         fi
     done
+
+    info "Reloading configuration"
+    source "$HOME/.zshrc"
 }
 
 setup_wezterm() {
-    title "Setting up Nvim"
+    title "Setting up Wezterm"
     mkdir -p "$BACKUP_DIR"
 
     config="$DOTFILES/config/wezterm"
@@ -85,6 +88,10 @@ setup_wezterm() {
         warning "removing $target"
         rm -rf "$target"
     fi
+
+
+    info "Installing Plugin"
+    git clone "https://github.com/danielcopper/wezterm-session-manager.git" "$DOTFILES/config/wezterm/wezterm-session-manager"
 
     echo -e
     info "Installing to ~/.config"
@@ -141,40 +148,47 @@ setup_tmux() {
     done
 }
 
+all() {
+    info "All backup config will store at $BACKUP_DIR"
+    warning "Are you sure will overide all config for wezterm, zsh, nvim and tmux? ([Y]es/[N]o)"
+    read
+    if [[ $REPLY == "y" || $REPLY == "Y" || $REPLY == "Yes" || $REPLY == "yes" ]]; then
+        setup_wezterm
+        setup_zsh
+        setup_nvim
+        setup_tmux
+    fi
+}
+
 help() {
-    title "Cicingik Dotfiles"
+    title "cicingik dotfiles"
     echo -e $"Usage: ./$(basename "$0") <command>\n"
     echo -e "${COLOR_BLUE}Available commands:${COLOR_NONE}$1"
     echo -e $"wezterm : Setup wezterm; overide all existing configuration."
     echo -e $"zsh     : Setup zsh; overide all existing configuration."
     echo -e $"nvim    : Setup nvim; overide all existing configuration."
     echo -e $"tmux    : Setup tmux; overide all existing configuration."
+    echo -e $"tmux    : Setup tmux; overide all existing configuration."
+    echo -e $"all     : Setup all dottfile config; overide all existing configuration."
 
-    echo -e "\nNOTE: Old configuration will be back up in directory ~/dotfiles-backup"
-}
-
-all() {
-    info "All backup config will store at $BACKUP_DIR"
-    warning "Are you sure will overide all config for nvim and zsh? ([Y]es/[N]o)"
-    read
-    if [[ $REPLY == "y" || $REPLY == "Y" || $REPLY == "Yes" || $REPLY == "yes" ]]; then
-      backup
-      setup_symlinks
-    fi
+    echo -e "\nNOTE: Old configuration will be back up in directory $BACKUP_DIR"
 }
 
 case "$1" in
-    wezterm)
-        setup_wezterm
-        ;;
     zsh)
         setup_zsh
+        ;;
+    wezterm)
+        setup_wezterm
         ;;
     nvim)
         setup_nvim
         ;;
     tmux)
         setup_tmux
+        ;;
+    all)
+        all
         ;;
     help)
         help

@@ -22,7 +22,7 @@ cd dotfiles
 
 ./install.sh help
 
-Cicingik Dotfiles
+cicingik dotfiles
 ==============================
 
 Usage: ./install.sh <command>
@@ -32,6 +32,7 @@ wezterm : Setup wezterm; overide all existing configuration.
 zsh     : Setup zsh; overide all existing configuration.
 nvim    : Setup nvim; overide all existing configuration.
 tmux    : Setup tmux; overide all existing configuration.
+all     : Setup all dottfile config; overide all existing configuration.
 
 NOTE: Old configuration will be back up in directory ~/dotfiles-backup
 ```
