@@ -169,7 +169,7 @@ help() {
     echo -e $"nvim    : Setup nvim; overide all existing configuration."
     echo -e $"tmux    : Setup tmux; overide all existing configuration."
     echo -e $"tmux    : Setup tmux; overide all existing configuration."
-    echo -e $"all     : Setup all dottfile config; overide all existing configuration."
+    echo -e $"all     : Setup all dotfiles config; overide all existing configuration."
 
     echo -e "\nNOTE: Old configuration will be back up in directory $BACKUP_DIR"
 }
