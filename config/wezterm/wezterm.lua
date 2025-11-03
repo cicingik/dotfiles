@@ -6,6 +6,13 @@ wezterm.on("save_session", function(window) session_manager.save_state(window) e
 wezterm.on("load_session", function(window) session_manager.load_state(window) end)
 wezterm.on("restore_session", function(window) session_manager.restore_state(window) end)
 
+local config = {}
+
+-- In newer versions of wezterm, use the config_builder which will
+-- help provide clearer error messages
+if wezterm.config_builder then
+  config = wezterm.config_builder()
+end
 
 -- NOTE: most use command from default keybind that I have
 -- CTRL + tab             -> next tab
@@ -15,7 +22,12 @@ wezterm.on("restore_session", function(window) session_manager.restore_state(win
 local SOLID_RIGHT_ARROW = wezterm.nerdfonts.pl_right_hard_divider
 local SOLID_LEFT_ARROW = wezterm.nerdfonts.pl_left_hard_divider
 
-local CURRENTS_WALLPAPER = '/personal/dotfiles/config/wezterm/wallpaper/GLrUaxgbgAAG5Ic.jpeg'
+
+-- This is where you actually apply your config choices.
+local XDG_CONFIG_DIR = "/.config"
+local CURRENTS_WALLPAPER = '/wezterm/wallpaper/GLrUaxgbgAAG5Ic.jpeg'
+config.window_background_image = XDG_CONFIG_DIR .. CURRENTS_WALLPAPER
+
 
 -- Color palette for the backgrounds of each cell
 -- ref: https://colorswall.com/palette/228122
@@ -43,23 +55,11 @@ local battery = '🔥'
 local active_workspace = '🌊 '
 local motion = { '🌕', '🌖', '🌗', '🌘', '🌑', '🌒', '🌓', '🌔' }
 
-local config = {}
 -- Foreground color for the text across the fade
 local text_fg = black
 local colors = kanagawa_wave_pallete
 
--- In newer versions of wezterm, use the config_builder which will
--- help provide clearer error messages
-if wezterm.config_builder then
-  config = wezterm.config_builder()
-end
-
 local handle = io.popen("echo $HOME")
-if handle then
-  local home = handle:read("*a"):match("^%s*(.-)%s*$")
-  handle:close()
-  config.window_background_image = home .. CURRENTS_WALLPAPER
-end
 
 config.adjust_window_size_when_changing_font_size = true
 config.default_cursor_style = "BlinkingBar"
@@ -91,7 +91,7 @@ config.font = wezterm.font({
   weight = 'Bold',
   stretch = 'Condensed',
 })
-config.font_size = 11.5
+config.font_size = 10
 config.freetype_load_target = 'Normal' ---@type 'Normal'|'Light'|'Mono'|'HorizontalLcd'
 config.freetype_render_target = 'Normal' ---@type 'Normal'|'Light'|'Mono'|'HorizontalLcd'
 
@@ -107,7 +107,7 @@ config.switch_to_last_active_tab_when_closing_tab = true
 
 config.window_background_image_hsb = {
   -- Darken the background image
-  brightness = 0.2,
+  brightness = 0.07,
   -- You can adjust the hue by scaling its value.
   -- a multiplier of 1.0 leaves the value unchanged.
   hue = 1.0,
@@ -134,6 +134,38 @@ config.default_workspace = 'development'
 -- 	{ name = 'unix' },
 -- }
 
+config.wsl_domains = {
+  {
+    -- The name of this specific domain.  Must be unique amonst all types
+    -- of domain in the configuration file.
+    name = 'WSL:Ubuntu-24.04',
+
+    -- The name of the distribution.  This identifies the WSL distribution.
+    -- It must match a valid distribution from your `wsl -l -v` output in
+    -- order for the domain to be useful.
+    distribution = 'Ubuntu-24.04',
+
+    -- The username to use when spawning commands in the distribution.
+    -- If omitted, the default user for that distribution will be used.
+
+    -- username = "hunter",
+
+    -- The current working directory to use when spawning commands, if
+    -- the SpawnCommand doesn't otherwise specify the directory.
+
+    -- default_cwd = "/tmp"
+
+    -- The default command to run, if the SpawnCommand doesn't otherwise
+    -- override it.  Note that you may prefer to use `chsh` to set the
+    -- default shell for your user inside WSL to avoid needing to
+    -- specify it here
+
+    -- default_prog = {"fish"}
+  },
+}
+config.default_domain = 'WSL:Ubuntu-24.04'
+
+
 wezterm.on("update-right-status", function(window)
   local cells = {}
 
@@ -155,28 +187,27 @@ wezterm.on("update-right-status", function(window)
     table.insert(cells, bat)
   end
 
-  local _, date, _ = wezterm.run_child_process({ "date" });
-  date = wezterm.strftime("%a %b %-d %H:%M:%S");
+  local date = wezterm.strftime("%a %b %-d %H:%M:%S")
   table.insert(cells, date)
 
   local workspace = window:active_workspace()
   table.insert(cells, active_workspace .. workspace)
 
-  local ctx = 'N/A'
-  local handle_kcs = io.popen("$HOME/bin/kubectl config current-context")
-  if handle_kcs then
-    ctx = handle_kcs:read("*a"):match("^%s*(.-)%s*$")
-    handle_kcs:close()
-  end
+  -- local ctx = 'N/A'
+  -- local handle_kcs = io.popen("$HOME/bin/kubectl config current-context")
+  -- if handle_kcs then
+  --   ctx = handle_kcs:read("*a"):match("^%s*(.-)%s*$")
+  --   handle_kcs:close()
+  -- end
+  --
+  -- local namespace = 'N/A'
+  -- local handle_ns = io.popen("$HOME/bin/kubectl config view --minify --output 'jsonpath={..namespace}'")
+  -- if handle_ns then
+  --   namespace = handle_ns:read("*a"):match("^%s*(.-)%s*$")
+  --   handle_ns:close()
+  -- end
 
-  local namespace = 'N/A'
-  local handle_ns = io.popen("$HOME/bin/kubectl config view --minify --output 'jsonpath={..namespace}'")
-  if handle_ns then
-    namespace = handle_ns:read("*a"):match("^%s*(.-)%s*$")
-    handle_ns:close()
-  end
-
-  table.insert(cells, kube .. ctx .. '   ' .. namespace .. ' ')
+  -- table.insert(cells, kube .. ctx .. '   ' .. namespace .. ' ')
 
   -- The elements to be formatted
   local elements = {}
@@ -220,49 +251,20 @@ config.mouse_bindings = {
 }
 
 -- timeout_milliseconds defaults to 1000 and can be omitted
-config.leader = { key = 'a', mods = 'SUPER', timeout_milliseconds = 1000 }
+config.disable_default_key_bindings = false
+config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
+
+local act = wezterm.action
 config.keys = {
   -- Pane Configuration
+  { key = 't',  mods = 'LEADER', action = act.SpawnTab 'CurrentPaneDomain' },
+  { key = '\\', mods = 'LEADER', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
+  { key = '-',  mods = 'LEADER', action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
+  { key = 'q',  mods = 'LEADER', action = act.CloseCurrentPane { confirm = true } },
+  { key = 's',  mods = 'LEADER', action = act.ShowLauncherArgs { flags = 'WORKSPACES' } },
   {
-    key = '|',
-    mods = 'LEADER|SHIFT',
-    action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
-  },
-  {
-    key = '_',
-    mods = 'LEADER|SHIFT',
-    action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
-  },
-  -- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
-  {
-    key = 'a',
-    mods = 'LEADER|CTRL',
-    action = wezterm.action.SendKey { key = 'a', mods = 'CTRL' },
-  },
-
-  -- Attach to muxer
-  {
-    key = 'a',
+    key = '4',
     mods = 'LEADER',
-    action = wezterm.action.AttachDomain 'unix',
-  },
-
-  {
-    key = 'd',
-    mods = 'LEADER',
-    action = wezterm.action.DetachDomain { DomainName = 'unix' },
-  },
-
-  -- Show list of workspaces
-  {
-    key = 's',
-    mods = 'LEADER',
-    action = wezterm.action.ShowLauncherArgs { flags = 'WORKSPACES' },
-  },
-  -- Rename current session; analagous to command in tmux
-  {
-    key = '$',
-    mods = 'LEADER|SHIFT',
     action = wezterm.action.PromptInputLine {
       description = 'Enter new name for session',
       action = wezterm.action_callback(
@@ -279,21 +281,21 @@ config.keys = {
   },
 
   -- Session manager bindings
-  {
-    key = 'w',
-    mods = 'LEADER|SHIFT',
-    action = wezterm.action({ EmitEvent = "save_session" }),
-  },
-  {
-    key = 'L',
-    mods = 'LEADER|SHIFT',
-    action = wezterm.action({ EmitEvent = "load_session" }),
-  },
-  {
-    key = 'R',
-    mods = 'LEADER|SHIFT',
-    action = wezterm.action({ EmitEvent = "restore_session" }),
-  },
+  -- {
+  --   key = 'w',
+  --   mods = 'LEADER|SHIFT',
+  --   action = wezterm.action({ EmitEvent = "save_session" }),
+  -- },
+  -- {
+  --   key = 'L',
+  --   mods = 'LEADER|SHIFT',
+  --   action = wezterm.action({ EmitEvent = "load_session" }),
+  -- },
+  -- {
+  --   key = 'R',
+  --   mods = 'LEADER|SHIFT',
+  --   action = wezterm.action({ EmitEvent = "restore_session" }),
+  -- },
 }
 
 return config

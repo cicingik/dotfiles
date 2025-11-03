@@ -11,6 +11,7 @@ export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 export PATH="$PYENV_ROOT/shims:$PATH"
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="${HOME}/squashfs-root/usr/bin:$PATH"
 
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
@@ -20,7 +21,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 export EDITOR="nvim"
 export DEVELOMMENT_DIR="$HOME/development"
 export PERSONAL_DIR="$HOME/personal"
-
+export XDG_CONFIG_HOME="$HOME/.config"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 
@@ -161,7 +162,7 @@ if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-clou
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /opt/homebrew/bin/vault vault
-. "/Users/mac/.deno/env"
+# . "/Users/mac/.deno/env"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"

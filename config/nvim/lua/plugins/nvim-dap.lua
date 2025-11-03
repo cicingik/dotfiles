@@ -117,9 +117,9 @@ return {
 
       local lldb = {
         name = "Launch lldb",
-        command = '/opt/homebrew/opt/llvm@19/bin/lldb', -- adjust as needed, must be absolute path
-        type = "lldb",                                  -- matches the adapter
-        request = "launch-target",                      -- could also attach to a currently running process
+        command = '/bin/lldb-dap-18', -- adjust as needed, must be absolute path
+        type = "lldb",                -- matches the adapter
+        request = "launch-target",    -- could also attach to a currently running process
         program = function()
           return vim.fn.input(
             "Path to executable: ",

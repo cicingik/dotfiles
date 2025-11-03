@@ -18,13 +18,9 @@ return {
   },
   opts = {
     workspaces = {
-      -- {
-      --   name = "works",
-      --   path = "~/personal/amygdala/cerebrum",
-      -- },
       {
-        name = "koinworks",
-        path = "~/personal/amygdala/cerebrum/koinworks",
+        name = "work",
+        path = "~/personal/amygdala/cerebrum/work",
       },
       {
         name = "personal",

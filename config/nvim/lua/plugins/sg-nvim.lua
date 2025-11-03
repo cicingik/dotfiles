@@ -1,8 +1,8 @@
-local ok, lsp = pcall(require, "lsp-zero")
-if not ok then
-  return
-end
-
+-- local ok, lsp = pcall(require, "lsp-zero")
+-- if not ok then
+--   return
+-- end
+--
 return {
   -- {
   --   "sourcegraph/sg.nvim",

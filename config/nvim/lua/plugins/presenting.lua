@@ -3,7 +3,7 @@ return {
   "mzlogin/vim-markdown-toc",
   {
     "iamcco/markdown-preview.nvim",
-    dev = true,
+    dev = false,
     -- build = function() vim.fn["mkdp#util#install"]() end,
     build = function(plugin)
       if vim.fn.executable "npx" then

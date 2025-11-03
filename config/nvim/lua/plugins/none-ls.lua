@@ -34,7 +34,7 @@ return {
         -- }),
         nills.builtins.code_actions.refactoring,
 
-        nills.builtins.diagnostics.pylint,
+        -- nills.builtins.diagnostics.pylint,
         nills.builtins.formatting.isort,
         nills.builtins.formatting.black,
         -- nills.builtins.diagnostics.pylint.with({

@@ -43,7 +43,7 @@ local options = {
   confirm = true,                          -- confirm to save changes before exiting modified buffer
   fillchars = { eob = " " },               -- change the character at the end of buffer
   autoread = true,                         -- Automatically re-read files if unmodified inside Vim.
-  -- cursorlineopt = "number",                -- set the cursorline
+  -- cursorlineopt = "number",             -- set the cursorline
   softtabstop = 2,
   foldmethod = "expr",
   foldexpr = "nvim_treesitter#foldexpr()",
@@ -58,7 +58,7 @@ vim.g.maplocalleader = ' '
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-vim.g.python3_host_prog = '/Users/mac/.pyenv/shims/python'
+vim.g.python3_host_prog = '/home/dany_ulysses/.pyenv/shims/python3'
 
 vim.g.lazygit_floating_window_winblend = 0 -- transparency of floating window
 vim.g.lazygit_floating_window_scaling_factor = 0.9 -- scaling factor for floating window

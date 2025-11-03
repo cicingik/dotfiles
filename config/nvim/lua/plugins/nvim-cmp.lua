@@ -127,7 +127,10 @@ local ls_config = function()
       """
         ]], {}
       )
-    )
+    ),
+
+    s("long", fmt(" # noqa: E501 pylint: disable=line-too-long", {}))
+
   })
 end
 
