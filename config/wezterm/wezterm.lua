@@ -24,7 +24,7 @@ local SOLID_LEFT_ARROW = wezterm.nerdfonts.pl_left_hard_divider
 
 
 -- This is where you actually apply your config choices.
-local XDG_CONFIG_DIR = "/.config"
+local XDG_CONFIG_DIR = "/Users/dany_ulyssestwo/.config"
 local CURRENTS_WALLPAPER = '/wezterm/wallpaper/GLrUaxgbgAAG5Ic.jpeg'
 config.window_background_image = XDG_CONFIG_DIR .. CURRENTS_WALLPAPER
 

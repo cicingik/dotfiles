@@ -24,6 +24,7 @@ export PERSONAL_DIR="$HOME/personal"
 export XDG_CONFIG_HOME="$HOME/.config"
 # bun
 export BUN_INSTALL="$HOME/.bun"
+export GPG_TTY=$(tty)
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -189,3 +190,5 @@ alias mypodman="cd $PERSONAL_DIR/dockerfiles"
 alias brain="nvim $PERSONAL_DIR/amygdala/README.md"
 alias amygdala="cd $PERSONAL_DIR/amygdala"
 alias gomake="cp $PERSONAL_DIR/dotfiles/script/Makefile Makefile"
+alias cfg="cd /mnt/c/Users/dany_ulyssestwo/.config"
+alias cdwin="cd /mnt/c/Users/dany_ulyssestwo"

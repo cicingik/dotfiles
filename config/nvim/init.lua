@@ -1,3 +1,5 @@
+require("config.mason-path")
+require("config.lsp")
 require("config.options")
 require("config.remap")
 require("config.autocmds")

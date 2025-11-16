@@ -67,7 +67,7 @@ return {
     name = "Obsidian",
     s = { "<cmd>ObsidianWorkspace<cr>", "Workspaces" },
     p = { "<cmd>ObsidianWorkspace personal<cr>", "Personal Workspaces" },
-    w = { "<cmd>ObsidianWorkspace koinworks<cr>", "Working Workspaces" },
+    w = { "<cmd>ObsidianWorkspace work<cr>", "Working Workspaces" },
     n = { "<cmd>ObsidianNew<cr>", "New Page" },
     y = { "<cmd>ObsidianYesterday<cr>", "Yesterday Daily Note" },
     d = { "<cmd>ObsidianToday<cr>", "Today Daily Note" },
