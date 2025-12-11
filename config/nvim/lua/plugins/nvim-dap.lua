@@ -117,7 +117,7 @@ return {
 
       local lldb = {
         name = "Launch lldb",
-        command = '/bin/lldb-dap-18', -- adjust as needed, must be absolute path
+        command = '/bin/lldb', -- adjust as needed, must be absolute path
         type = "lldb",                -- matches the adapter
         request = "launch-target",    -- could also attach to a currently running process
         program = function()
