@@ -13,7 +13,7 @@ return {
   dependencies = {
     -- Required.
     "nvim-lua/plenary.nvim",
-
+    "folke/snacks.nvim",
     -- see below for full list of optional dependencies 👇
   },
   opts = {
