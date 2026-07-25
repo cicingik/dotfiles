@@ -47,7 +47,7 @@ return {
           -- on_highlights = function(highlight_groups, palette) end,
         }
       )
-      -- vim.cmd.colorscheme 'everforest'
+      vim.cmd.colorscheme 'everforest'
     end,
   },
   {
@@ -100,7 +100,7 @@ return {
         --     }
         --   }
       })
-      vim.cmd.colorscheme 'kanagawa-wave'
+      -- vim.cmd.colorscheme 'kanagawa-wave'
     end
   },
   "xiyaowong/nvim-transparent", -- Remove all background colors to make nvim transparent

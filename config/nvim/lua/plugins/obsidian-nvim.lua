@@ -13,7 +13,7 @@ return {
   dependencies = {
     -- Required.
     "nvim-lua/plenary.nvim",
-
+    "folke/snacks.nvim",
     -- see below for full list of optional dependencies 👇
   },
   opts = {
@@ -46,13 +46,15 @@ return {
 
     daily_notes = {
       -- Optional, if you keep daily notes in a separate directory.
-      folder = "dailies",
+      folder = "monthly",
       -- Optional, if you want to change the date format for the ID of daily notes.
-      date_format = "%Y-%m/%d",
+      date_format = "%Y-%m",
       -- Optional, if you want to change the date format of the default alias of daily notes.
-      alias_format = "%B %-d, %Y",
+      alias_format = "%B %Y",
       -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
-      template = nil
+      template = "1_Monthly.md",
+      -- Optional, optional for default_tags
+      default_tags = { "monthly" },
     },
 
     -- Optional, completion of wiki links, local markdown links, and tags using nvim-cmp.
@@ -110,7 +112,8 @@ return {
       local out = {
         id = note.id,
         title = note.title,
-        date = tostring(os.date("%B %-d, %Y")),
+        -- date = tostring(os.date("%B %-d, %Y")),
+        tags = note.tags,
       }
       -- `note.metadata` contains any manually added fields in the frontmatter.
       -- So here we just make sure those fields are kept in the frontmatter.
@@ -125,7 +128,7 @@ return {
     -- Optional, for templates (see below).
     templates = {
       subdir = "~/personal/amygdala/templates",
-      date_format = "%Y-%m-%d",
+      date_format = "%B %-d, %Y",
       time_format = "%H:%M",
       -- A map for custom variables, the key should be the variable and the value a function
       substitutions = {},

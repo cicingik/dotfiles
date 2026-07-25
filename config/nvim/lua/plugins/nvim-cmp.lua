@@ -10,9 +10,7 @@ local ls_config = function()
   local s = ls.snippet
   local fmt = require("luasnip.extras.fmt").fmt
   local t = ls.text_node
-  local i = ls.insert_node
   local types = require("luasnip.util.types")
-  local rep = require("luasnip.extras").rep
   local extras = require("luasnip.extras")
 
 
@@ -119,7 +117,6 @@ local ls_config = function()
       fmt(
         [[
       #!/usr/bin/env python3
-      # -*- coding: utf-8 -*-
       """
 
       Author: cicingik
@@ -140,40 +137,33 @@ return {
   event = 'InsertEnter',
   branch = 'main',
   dependencies = {
-    { 'onsails/lspkind.nvim' },
-    { 'saadparwaiz1/cmp_luasnip' },
+    "hrsh7th/cmp-buffer", -- source for text in buffer
+    "hrsh7th/cmp-path",   -- source for file system paths
     {
-      'L3MON4D3/LuaSnip',
+      "L3MON4D3/LuaSnip",
       dependencies = { "rafamadriz/friendly-snippets" },
-      tag = "v2.2.0",
+      -- follow latest release.
+      version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+      -- install jsregexp (optional!).
+      build = "make install_jsregexp",
       config = ls_config,
     },
+    "saadparwaiz1/cmp_luasnip",     -- for autocompletion
+    "rafamadriz/friendly-snippets", -- useful snippets
+    "onsails/lspkind.nvim",         -- vs-code like pictograms
   },
   config = function()
-    require('lsp-zero.cmp').extend()
+    local cmp = require("cmp")
+
+    local luasnip = require("luasnip")
+
+    local lspkind = require("lspkind")
+
+    -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
     require("luasnip.loaders.from_vscode").lazy_load()
 
-    local cmp         = require('cmp')
-    local luasnip     = require('luasnip')
-    local cmp_mapping = cmp.mapping
-    local cmp_action  = require('lsp-zero.cmp').action()
     cmp.setup({
-      formatting = {
-        format = function(entry, vim_item)
-          vim_item.menu = ({
-            nvim_lsp = "[LSP]",
-            luasnip = "[Snippet]",
-            buffer = "[Buffer]",
-          })[entry.source.name]
-          vim_item.dup = ({
-            buffer = 1,
-            nvim_lsp = 0,
-            luasnip = 0,
-          })[entry.source.name] or 0
-          return vim_item
-        end,
-      },
-      snippet = {
+      snippet = { -- configure how nvim-cmp interacts with snippet engine
         expand = function(args)
           luasnip.lsp_expand(args.body)
         end,
@@ -186,19 +176,32 @@ return {
           winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
         }),
       },
-      sources = cmp.config.sources({
-        { name = "luasnip" },
-        { name = "nvim_lsp" },
-        { name = "buffer" },
-      }, {
-        { name = 'buffer' },
-      }),
       mapping = cmp.mapping.preset.insert({
-        ['<Tab>'] = cmp_action.luasnip_supertab(),
-        ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
-        ["<C-Space>"] = cmp_mapping.complete(),
-        ['<CR>'] = cmp.mapping.confirm(),
+        ["<S-Tab>"] = cmp.mapping.select_prev_item(), -- previous suggestion
+        ["<Tab>"] = cmp.mapping.select_next_item(), -- next suggestion
+        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
+        ["<C-e>"] = cmp.mapping.abort(), -- close completion window
+        ["<CR>"] = cmp.mapping.confirm({ select = false }),
       }),
+      -- sources for autocompletion
+      sources = cmp.config.sources({
+        { name = "nvim_lsp" },
+        { name = "luasnip" }, -- snippets
+        { name = "buffer" }, -- text within current buffer
+        { name = "path" }, -- file system paths
+      }, {
+          { name = 'buffer' },
+        }),
+
+      -- configure lspkind for vs-code like pictograms in completion menu
+      formatting = {
+        format = lspkind.cmp_format({
+          maxwidth = 50,
+          ellipsis_char = "...",
+        }),
+      },
     })
-  end
+  end,
 }

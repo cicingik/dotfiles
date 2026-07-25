@@ -43,7 +43,7 @@ setup_zsh() {
     mkdir -p "$BACKUP_DIR"
 
     info "Copy custom theme"
-    cp "$DOTFILES/zsh/cicingik.zsh.theme" "$HOME/.oh-my-zsh/themes/zsh.theme"
+    cp "$DOTFILES/zsh/cicingik.zsh-theme" "$HOME/.oh-my-zsh/themes/cicingik.zsh-theme"
 
     for file in $(find -H "$DOTFILES/zsh" -maxdepth 3 -name '*.symlink'); do
         filename=".$(basename "$file" '.symlink')"

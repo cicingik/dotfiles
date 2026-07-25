@@ -1,3 +1,4 @@
+require("config.lsp")
 require("config.options")
 require("config.remap")
 require("config.autocmds")

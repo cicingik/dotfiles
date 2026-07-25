@@ -4,12 +4,8 @@ export PATH="${HOME}/.pyenv/bin:$PATH"
 export PATH="${HOME}/bin:$PATH"
 export PATH="${HOME}/.local/bin:$PATH"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-export PATH="/opt/homebrew/bin:$PATH"
-export PATH="/opt/homebrew/opt/openvpn/sbin:$PATH"
-export PATH="${HOME}/Library/Application Support/JetBrains/Toolbox/scripts:$PATH"
-export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+export PATH="${HOME}/homebrew/bin:$PATH"
 export PATH="$PYENV_ROOT/shims:$PATH"
-export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="${HOME}/squashfs-root/usr/bin:$PATH"
 
@@ -24,6 +20,7 @@ export PERSONAL_DIR="$HOME/personal"
 export XDG_CONFIG_HOME="$HOME/.config"
 # bun
 export BUN_INSTALL="$HOME/.bun"
+export GPG_TTY=$(tty)
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -118,6 +115,7 @@ source $ZSH/oh-my-zsh.sh
 
 eval "$(direnv hook zsh)"
 eval "$(pyenv virtualenv-init -)"
+eval "$(${HOME}/homebrew/bin/brew shellenv)"
 
 # if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
 #   tmux a -t base || exec tmux new -s base && exit;
@@ -182,10 +180,12 @@ alias e=nvim
 alias c=clear
 alias pc=podman-compose
 
-alias work="cd $DEVELOMMENT_DIR"
+alias dev="cd $DEVELOMMENT_DIR"
 alias mine="cd $PERSONAL_DIR"
 alias dot="cd $PERSONAL_DIR/dotfiles"
 alias mypodman="cd $PERSONAL_DIR/dockerfiles"
 alias brain="nvim $PERSONAL_DIR/amygdala/README.md"
 alias amygdala="cd $PERSONAL_DIR/amygdala"
 alias gomake="cp $PERSONAL_DIR/dotfiles/script/Makefile Makefile"
+alias cfg="cd /mnt/c/Users/dany_ulyssestwo/.config"
+alias cdwin="cd /mnt/c/Users/dany_ulyssestwo"
