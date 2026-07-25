@@ -180,7 +180,7 @@ alias e=nvim
 alias c=clear
 alias pc=podman-compose
 
-alias work="cd $DEVELOMMENT_DIR"
+alias dev="cd $DEVELOMMENT_DIR"
 alias mine="cd $PERSONAL_DIR"
 alias dot="cd $PERSONAL_DIR/dotfiles"
 alias mypodman="cd $PERSONAL_DIR/dockerfiles"

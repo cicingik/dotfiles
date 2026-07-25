@@ -131,8 +131,10 @@ return {
           '*.md',
         },
         options = {
-          insert = true,       -- when typeing "|"
-          insert_leave = true, -- when leaveing insert
+          insert = true, -- when typing "|"
+          insert_leave = true, -- when leaving insert
+          pad_separator_line = true, -- add space in separator line
+          alig_style = 'left', -- default, left, center, right
         },
       })
     end
