@@ -8,6 +8,7 @@ export PATH="${HOME}/homebrew/bin:$PATH"
 export PATH="$PYENV_ROOT/shims:$PATH"
 export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="${HOME}/squashfs-root/usr/bin:$PATH"
+export PATH="${HOME}/.duckdb/cli/latest":$PATH
 
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
@@ -21,6 +22,26 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export GPG_TTY=$(tty)
+
+TYPESPEC_PATH="$HOME/.tsp/bin"
+if [ -d "$TYPESPEC_PATH" ]; then
+  export PATH="$HOME/.tsp/bin:$PATH"
+fi
+
+__wezterm_set_uservar() {
+  printf '\033]1337;SetUserVar=%s=%s\007' "$1" "$(printf '%s' "$2" | base64 -w0)"
+}
+
+__wezterm_k8s() {
+  local out ctx ns
+  out=$(kubectl config view --minify -o 'jsonpath={.current-context}|{..namespace}' 2>/dev/null)
+  ctx=${out%%|*}
+  ns=${out#*|}
+  __wezterm_set_uservar K8S_CTX "$ctx"
+  __wezterm_set_uservar K8S_NS "${ns:-default}"
+}
+
+precmd_functions+=(__wezterm_k8s)
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -122,6 +143,9 @@ eval "$(${HOME}/homebrew/bin/brew shellenv)"
 # fi
 
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
+# Claude Code's shell snapshot drops `_`-prefixed functions, so gvm's cd()
+# override fails there with "_encode: command not found". Use builtin cd.
+[[ -n "$CLAUDECODE" ]] && (( $+functions[cd] )) && unfunction cd
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -186,6 +210,10 @@ alias dot="cd $PERSONAL_DIR/dotfiles"
 alias mypodman="cd $PERSONAL_DIR/dockerfiles"
 alias brain="nvim $PERSONAL_DIR/amygdala/README.md"
 alias amygdala="cd $PERSONAL_DIR/amygdala"
-alias gomake="cp $PERSONAL_DIR/dotfiles/script/Makefile Makefile"
-alias cfg="cd /mnt/c/Users/dany_ulyssestwo/.config"
-alias cdwin="cd /mnt/c/Users/dany_ulyssestwo"
+alias cfg="cd $HOME/.config"
+
+# TypeSpec
+TYPESPEC_PATH="$HOME/.tsp/bin"
+if [ -d "$TYPESPEC_PATH" ]; then
+  export PATH="$HOME/.tsp/bin:$PATH"
+fi

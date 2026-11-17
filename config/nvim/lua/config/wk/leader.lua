@@ -4,7 +4,7 @@ return {
   w = { "<cmd>w!<cr>", "Save" },
   q = { "<cmd>confirm q<cr>", "Quit" },
   c = { "<cmd>bd<cr>", "Close Buffer" },
-  m = { "<cmd>MarkdownPreview<cr>", "Open markdown in web browser" },
+  m = { "<cmd>MdKite<cr>", "Open markdown in web browser" },
   j = { "<cmd>HopWord<cr>", "Go to any word in the current buffer" },
   l = { "<cmd>AerialToggle!<cr>", "Areal Toggle" },
   x = { "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", "Document Diagnostics (Trouble)" },
@@ -76,13 +76,13 @@ return {
     t = { "<cmd>ObsidianNewFromTemplate<cr>", "Template" },
     a = { "<cmd>ObsidianTags<cr>", "Search by Tag" },
     f = { "<cmd>ObsidianQuickSwitch<cr>", "Browse Files" },
-    c = { "<cmd>ObsidianToggleCheckbox<cr>", "Checkbox" }
+    c = { "<cmd>ObsidianToggleCheckbox<cr>", "Checkbox" },
   },
 
   a = {
     name = "Assistant",
     a = { ":<c-u>lua require('ollama').prompt()<cr>", "Assistant Prompt" },
     q = { ":<c-u>lua require('ollama').prompt('Raw')<cr>", "Asking" },
-    g = { ":<c-u>lua require('ollama').prompt('Generate_Code')<cr>", "Generate Code" }
+    g = { ":<c-u>lua require('ollama').prompt('Generate_Code')<cr>", "Generate Code" },
   },
 }

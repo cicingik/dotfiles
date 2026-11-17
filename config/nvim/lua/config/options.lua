@@ -5,7 +5,7 @@ local options = {
   cmdheight = 1,                           -- more space in the neovim command line for displaying messages
   completeopt = { "menuone", "noselect" }, -- mostly just for cmp
   conceallevel = 2,                        -- so that `` is visible in markdown files
-  encoding = 'utf-8',
+  encoding = "utf-8",
   fileencoding = "utf-8",                  -- the encoding written to a file
   hlsearch = true,                         -- highlight all matches on previous search pattern
   ignorecase = true,                       -- ignore case in search patterns
@@ -47,26 +47,26 @@ local options = {
   softtabstop = 2,
   foldmethod = "expr",
   foldexpr = "nvim_treesitter#foldexpr()",
-  autoindent = true
+  autoindent = true,
 }
 
-vim.scriptencoding = 'utf-8'
+vim.scriptencoding = "utf-8"
 vim.bo.autoread = true
 
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-vim.g.python3_host_prog = '/home/dany_ulysses/.pyenv/shims/python3'
+vim.g.python3_host_prog = "$HOME/.pyenv/shims/python3"
 
-vim.g.lazygit_floating_window_winblend = 0 -- transparency of floating window
+vim.g.lazygit_floating_window_winblend = 0         -- transparency of floating window
 vim.g.lazygit_floating_window_scaling_factor = 0.9 -- scaling factor for floating window
 -- vim.g.lazygit_floating_window_border_chars = "['╭','─', '╮', '│', '╯','─', '╰', '│']" -- customize lazygit popup window border characters
-vim.g.lazygit_floating_window_use_plenary = 0 -- use plenary.nvim to manage floating window if available
-vim.g.lazygit_use_neovim_remote = 1 -- fallback to 0 if neovim-remote is not installed
-vim.g.lazygit_use_custom_config_file_path = 0 -- config file path is evaluated if this value is 1
-vim.g.lazygit_config_file_path = '' -- custom config file path
+vim.g.lazygit_floating_window_use_plenary = 0      -- use plenary.nvim to manage floating window if available
+vim.g.lazygit_use_neovim_remote = 1                -- fallback to 0 if neovim-remote is not installed
+vim.g.lazygit_use_custom_config_file_path = 0      -- config file path is evaluated if this value is 1
+vim.g.lazygit_config_file_path = ""                -- custom config file path
 
 vim.g.indent_blankline_show_current_context = true
 
@@ -88,29 +88,29 @@ vim.filetype.add({
     [".env"] = "sh",
     [".envrc"] = "sh",
     ["*.env"] = "sh",
-    ["*.envrc"] = "sh"
-  }
+    ["*.envrc"] = "sh",
+  },
 })
 
 vim.cmd([[ set nofoldenable]])
 
-vim.api.nvim_create_autocmd('TextYankPost', {
+vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
     vim.highlight.on_yank({
-      higroup = 'IncSearch',
+      higroup = "IncSearch",
       timeout = 300,
     })
-  end
+  end,
 })
 
 vim.diagnostic.config({
-  title            = false,
-  underline        = true,
-  virtual_text     = true,
-  signs            = true,
+  title = false,
+  underline = true,
+  virtual_text = true,
+  signs = true,
   update_in_insert = false,
-  severity_sort    = true,
-  float            = {
+  severity_sort = true,
+  float = {
     source = "if_many",
     style = "minimal",
     border = "rounded",
